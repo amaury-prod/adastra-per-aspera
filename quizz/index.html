@@ -82,6 +82,7 @@
   .stack li::before{content:"✓";color:var(--green);font-weight:800;flex:0 0 22px}
   .stack b{display:block;color:var(--night)}
   .price{text-align:center;margin:18px 0 6px}
+  .price .was{font-size:26px;color:#8a92a6;text-decoration:line-through;margin-right:10px;vertical-align:middle}
   .price .now{font-size:46px;font-weight:800;color:var(--night);line-height:1}
   .faq details{border-top:1px solid var(--line);padding:12px 0}
   .faq summary{font-weight:700;cursor:pointer;color:var(--night);font-size:19px;list-style:none;display:flex;justify-content:space-between}
@@ -140,7 +141,7 @@
 <section class="screen" id="s-home">
   <img class="photo home" src="marcus.jpg" alt="Marcus Booker" width="480" height="480">
   <h1 class="center" style="margin-top:6px">Hey, Marcus here.</h1>
-  <p class="sub">You commented on my 3AM post, so I made this for you.</p>
+  <p class="sub">If you wake up at 3AM and can't get back to sleep, this is for you.</p>
   <p class="sub">It takes 5 minutes. No email, nothing to buy. Just a few questions and I'll tell you what your night is trying to say.</p>
   <button class="btn btn-warm" style="margin-top:8px" onclick="startQuiz()">Let's go</button>
   <p class="center small" style="margin-top:16px">60-something, not a doctor. Just a man who used to see 3:07 every night.</p>
@@ -204,7 +205,7 @@
       <li><span><b>7 Evening Tonics</b>Seven evening drinks. Garlic, hibiscus, chamomile, ginger… one page each.</span></li>
       <li><span><b>The 14-Night Tracker</b>One page. Tick off each night and watch the pattern change.</span></li>
     </ul>
-    <div class="price"><span class="now">$27</span></div>
+    <div class="price"><span class="was">$47</span> <span class="now">$27</span></div>
     <p class="center small" style="margin-bottom:16px">One-time. Yours to keep.</p>
     <a class="btn btn-warm btn-cta" id="cta" href="#" onclick="return ctaClick()">Get the 14 nights — $27</a>
     <p class="center small" style="margin-top:12px">Instant access on your phone.</p>
@@ -326,7 +327,7 @@ var STORIES = {
     "I read every one. I can't answer every one. There's one of me. And there's a lot of you. It kept me up, honestly. Not at 3. At my desk.",
     "Because I know what to say. I lived it. I just can't type it out five hundred times. So I sat down and wrote it once. All of it. What I eat. What I drink. What I do in the last hour. What I do when I still wake up.",
     "That's what this is. Not a doctor's page. Not a pharmacy. Just a man who used to see 3:07 every night. And doesn't anymore.",
-    "You commented, so you get it first. Give me a second and I'll tell you what your answers say."]}
+    "You made it this far, so you get it first. Give me a second and I'll tell you what your answers say."]}
 };
 
 // Try this tonight. Complete, nothing held back.
@@ -356,7 +357,6 @@ var TIPS = {
 
 var FLOW = [
   {id:"home", type:"home"},
-  {id:"proof", type:"proof", step:1},
 
   {id:"sex", type:"q", step:1, title:"Are you a man or a woman?",
    why:"The night changes differently for each of us.",
