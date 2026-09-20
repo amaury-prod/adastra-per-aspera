@@ -124,6 +124,7 @@
   .plan li:first-child{border:0}
   .plan b{flex:0 0 108px;color:var(--warm2);font-size:16px;padding-top:2px}
 </style>
+<script async defer src="https://js.whop.com/static/checkout/loader.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -193,7 +194,7 @@
 
   <div class="card" id="offer">
     <span class="tag">The 3AM Reset</span>
-    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for Women Over 50</h2>
+    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for People Over 50</h2>
     <p>Sleep through the night again — in 14 nights, without one more pill.</p>
     <h3>What you get</h3>
     <ul class="stack">
@@ -233,6 +234,18 @@
 </section>
 
 <!-- WARM END (after "No thanks") -->
+<section class="screen" id="s-pay">
+  <h1 class="center">Your 14 nights</h1>
+  <p class="sub center">$27, one time. The download lands in your email right after.</p>
+  <div data-whop-checkout-plan-id="plan_m7PMgQAy7PS52"
+       data-whop-checkout-theme="light"
+       data-whop-checkout-theme-accent-color="#e8913a"
+       data-whop-checkout-return-url="https://adastra-per-aspera.org/sleep/thanks/"
+       style="height: fit-content; overflow: hidden; margin: 12px 0 20px;"></div>
+  <p class="center small">30-day guarantee. Email us and you get every dollar back.</p>
+  <p class="center" style="margin-top:14px"><button class="link" onclick="show('s-more')">‹ Back</button></p>
+</section>
+
 <section class="screen" id="s-end">
   <img class="photo home" src="marcus.jpg" alt="Marcus Booker" width="480" height="480">
   <h1 class="center">Sleep well.</h1>
@@ -246,7 +259,6 @@
 
 <script>
 // ===== CONFIG =====
-var WHOP_LINK = "WHOP_LINK";   // replace with the Whop checkout URL
 
 // ===== TRACKING =====
 window.dataLayer = window.dataLayer || [];
@@ -266,7 +278,7 @@ function pills(a){ return has(a, "tried", "Sleeping pills"); }
 var REASON_INSIGHT = {
   "Be a normal human during the day": {t:"Tired of being tired. I know that one.", b:[
     "The day is built the night before.",
-    "A walking zombie isn't lazy. She's short on sleep.",
+    "A walking zombie isn't lazy. You're short on sleep.",
     "Fix the night and the day fixes itself."]},
   "Stop worrying about my memory": {t:"Your brain isn't broken. It's tired.", b:[
     "A tired brain loses the keys. A rested one finds them.",
@@ -280,6 +292,9 @@ var REASON_INSIGHT = {
     "Nobody is patient on four hours of sleep.",
     "The people you love get the leftovers of a bad night.",
     "Give them the rested you back."]},
+  "Stop getting up to pee and never falling back asleep": {t:"Getting up is normal after 50. Not falling back asleep is the part we fix.", b:[
+    "Less liquid after 8PM.",
+    "And the 3AM card for when you're back in bed."]},
   "Get off the pills": {t:"You don't want one more thing to swallow.", b:[
     "Pills answer the bedtime problem.",
     "3AM is a different problem.",
@@ -307,11 +322,11 @@ var STORIES = {
     "One night we ate late. Company came by. We didn't sit down till almost eight. Real food too. Chicken, greens, sweet potato. I went to bed at eleven like always. And I woke up at six-thirty. Straight through.",
     "I thought it was luck. So I tried it again the next night. And the next. It wasn't luck. It was dinner. Nobody had ever told me to look there."]},
   why: {t:"Why I made this for you", p:[
-    "Every day I open my messages. Hundreds of them. Most from women like you. “Marcus, I'm up at 3 every night.” “Marcus, I'm a walking zombie.” “Marcus, I've tried everything.”",
+    "Every day I open my messages. Hundreds of them. Most from people like you. “Marcus, I'm up at 3 every night.” “Marcus, I'm a walking zombie.” “Marcus, I've tried everything.”",
     "I read every one. I can't answer every one. There's one of me. And there's a lot of you. It kept me up, honestly. Not at 3. At my desk.",
     "Because I know what to say. I lived it. I just can't type it out five hundred times. So I sat down and wrote it once. All of it. What I eat. What I drink. What I do in the last hour. What I do when I still wake up.",
     "That's what this is. Not a doctor's page. Not a pharmacy. Just a man who used to see 3:07 every night. And doesn't anymore.",
-    "You commented, sister, so you get it first. Give me a second and I'll tell you what your answers say."]}
+    "You commented, so you get it first. Give me a second and I'll tell you what your answers say."]}
 };
 
 // Try this tonight. Complete, nothing held back.
@@ -343,6 +358,9 @@ var FLOW = [
   {id:"home", type:"home"},
   {id:"proof", type:"proof", step:1},
 
+  {id:"sex", type:"q", step:1, title:"Are you a man or a woman?",
+   why:"The night changes differently for each of us.",
+   opts:["Woman","Man","Rather not say"]},
   {id:"goal", type:"q", step:1, multi:true, title:"What would sleeping well mean for you?",
    why:"So I know what you're really after. Pick all that apply.",
    opts:["Sleep through the night","Fall asleep faster","Wake up with energy","Stop relying on pills or gummies"]},
@@ -362,7 +380,7 @@ var FLOW = [
    build:function(){ return {t:"You can't fix 3AM at 11PM.", lead:"By then your evening is already baked in. Dinner is done. The screen light already hit your eyes. The house is already too warm. That's why the tea alone didn't work."}; }},
   {id:"reason", type:"q", step:1, title:"What's the main reason you want this fixed?",
    why:"This shapes what I'd tell you at the end.",
-   opts:["Be a normal human during the day","Stop worrying about my memory","My health long term","Stop being cranky with the people I love","Get off the pills"]},
+   opts:["Be a normal human during the day","Stop worrying about my memory","My health long term","Stop being cranky with the people I love","Stop getting up to pee and never falling back asleep","Get off the pills"]},
   {id:"i_reason", type:"insight", step:1, name:"reason", btn:"Sounds right",
    build:function(a){ return REASON_INSIGHT[a.reason] || REASON_INSIGHT["Be a normal human during the day"]; }},
   {id:"st_melatonin", type:"story", step:1, name:"melatonin"},
@@ -375,7 +393,7 @@ var FLOW = [
    opts:["Hot, sweating","Brain won't settle","Heart racing","I just lie there wide awake"]},
   {id:"tried", type:"q", step:2, multi:true, excl:"Nothing yet", title:"What have you already tried?",
    why:"So I don't tell you to do what already failed. Pick all that apply.",
-   opts:["Melatonin","Teas","Gummies or CBD","Sleeping pills","Hormones (HRT)","Nothing yet"]},
+   opts:function(a){ return a.sex === "Man" ? ["Melatonin","Teas","Gummies or CBD","Sleeping pills","Nothing yet"] : ["Melatonin","Teas","Gummies or CBD","Sleeping pills","Hormones (HRT)","Nothing yet"]; }},
   {id:"i_melatonin", type:"insight", step:2, name:"melatonin", btn:"Got it",
    when:function(a){ return has(a,"tried","Melatonin") || has(a,"tried","Gummies or CBD"); },
    build:function(a){ return {pre:"You might already know this but…", t:"Melatonin puts you to sleep. It doesn't keep you asleep.", b:[
@@ -395,7 +413,7 @@ var FLOW = [
      a.pill_stop === "Yes" ? "Wanting to stop is a good sign. Build the evening first." : "Keep what works for you. Add the evening on top."],
      soft:"And talk to your doctor before changing anything."}; }},
   {id:"i_hrt", type:"insight", step:2, name:"hrt", btn:"Got it",
-   when:function(a){ return has(a,"tried","Hormones (HRT)"); },
+   when:function(a){ return a.sex !== "Man" && has(a,"tried","Hormones (HRT)"); },
    build:function(a){ return {t:"Hormones are one piece. The fuel tank is another piece.", b:[
      "Some of you are on HRT and still wake up.",
      "That makes sense. Two pieces, two fixes.",
@@ -502,7 +520,7 @@ function photo(){ var img = el("img", "photo"); img.src = "marcus.jpg"; img.alt 
 
 function renderProof(s, box){
   box.appendChild(photo());
-  box.appendChild(el("h2", "center", "Made for the women who write to me every week."));
+  box.appendChild(el("h2", "center", "Made for the people who write to me every week."));
   box.appendChild(el("p", "lead center", "Not a doctor. Just what worked for me and for them."));
   var n = el("button", "btn btn-warm", "Okay"); n.type = "button";
   n.onclick = function(){ advance(); };
@@ -514,7 +532,7 @@ function renderQ(q, box){
   box.appendChild(el("h2", null, q.title));
   box.appendChild(el("p", "why", q.why));
   var cur = state.answers[q.id] || (q.multi ? [] : null);
-  q.opts.forEach(function(o){
+  (typeof q.opts === "function" ? q.opts(state.answers) : q.opts).forEach(function(o){
     var b = el("button", "opt" + ((q.multi ? cur.indexOf(o) > -1 : cur === o) ? " sel" : ""), o);
     b.type = "button";
     b.onclick = function(){ pick(q, o, b); };
@@ -612,7 +630,7 @@ function startQuiz(){
 
 function advance(){
   state.i = nextIdx(state.i); save();
-  if (FLOW[state.i].type === "wait"){ state.done = true; save(); track("quiz_complete"); }
+  if (FLOW[state.i].type === "wait"){ state.done = true; save(); track("quiz_complete", {sex: state.answers.sex}); }
   render();
 }
 
@@ -655,7 +673,7 @@ function renderResult(){
   var goal = a.goal || [];
   var future = a.future || [];
 
-  // 1. Her night
+  // 1. Your night
   var w = a.wake;
   var when = w === "I don't fall asleep at all" ? "you told me you can't even get to sleep in the first place" :
              "you wake up " + (w === "Before 1AM" ? "before 1AM" : w === "1–2AM" ? "between 1 and 2" : "between 2 and 4");
@@ -667,11 +685,11 @@ function renderResult(){
             a.howlong === "A few months" ? "A few months of that is enough to wear anyone down." :
             a.howlong === "1–2 years" ? "One or two years of that. That's a long time to be tired." :
             "And it's been going on longer than you want to admit. I know that feeling.";
-  var intro = prof === "The Hot Wake-Up" ? "The hot wake-up is the fuel dip with the heat turned up." :
+  var intro = prof === "The Hot Wake-Up" ? "The hot wake-up is the fuel dip with the heat turned up. " + (a.sex === "Woman" ? "Hormones do the turning." : "The room, the drink and the dinner do the turning.") :
               prof === "The Racing Mind" ? "Your body sends the wake-up signal, and your mind grabs it and runs." :
               "The classic 3AM Dip. It's the most common one I hear about.";
 
-  // 2. Her evening
+  // 2. Your evening
   var din = a.dinner === "Before 6PM" ? "You eat dinner before 6. Same mistake I made for years. That's a long stretch on an empty tank before 3AM." :
             a.dinner === "6–7PM" ? "You eat dinner around 6 or 7. Not bad, but it's what's on the plate that carries you to morning." :
             a.dinner === "7–8PM" ? "You eat dinner between 7 and 8. Fine, as long as the plate is doing its job." :
@@ -692,7 +710,7 @@ function renderResult(){
              a.last === "Pray or breathe" ? "You pray or breathe before lights out. Keep that. It's the right instinct." :
              "You read before lights out. Good. Keep that.";
 
-  // 3. What she tried
+  // 3. What you tried
   var tr;
   if (!tried.length || tried.indexOf("Nothing yet") > -1){
     tr = "You haven't tried much yet. Honestly, that's good news. No money spent fighting the wrong hour.";
@@ -702,15 +720,16 @@ function renderResult(){
     if (tried.indexOf("Teas") > -1) bits.push("The teas are nice. A cup at bedtime doesn't change what your body does at 3.");
     if (tried.indexOf("Gummies or CBD") > -1) bits.push("Gummies take the edge off the evening. They don't touch the middle of the night.");
     if (tried.indexOf("Sleeping pills") > -1) bits.push("The pills " + (a.pill_often === "Every night" ? "every night " : "") + "knock you out. They don't fix why you wake up." + (a.pill_stop === "Yes" ? " You told me you'd like to stop. That's a decision for you and your doctor, and the evening makes it easier." : ""));
-    if (tried.indexOf("Hormones (HRT)") > -1) bits.push("You're on hormones and you still wake up. That tells me the 3AM thing has another piece on top.");
+    if (a.sex !== "Man" && tried.indexOf("Hormones (HRT)") > -1) bits.push("You're on hormones and you still wake up. That tells me the 3AM thing has another piece on top.");
     tr = bits.join(" ") + " None of that is your fault. They all work on falling asleep. Your problem is staying asleep.";
   }
 
-  // 4. Why she wants it + willingness
+  // 4. Why you want it + willingness
   var why = a.reason === "Be a normal human during the day" ? "You said you want to be a normal human during the day. Tired of being tired. That was me too." :
             a.reason === "Stop worrying about my memory" ? "You said the memory thing worries you. That fog is your body asking for the sleep it didn't get." :
             a.reason === "My health long term" ? "You said it's about your health long term. That's the right reason, and it's the right place to fix it: the evening, not the bedtime." :
             a.reason === "Stop being cranky with the people I love" ? "You said you're tired of being cranky with the people you love. They'll get the rested you back." :
+            a.reason === "Stop getting up to pee and never falling back asleep" ? "You said it's the getting up, and never falling back asleep. Getting up is normal after 50. Falling back asleep is the part we fix: less liquid after 8, and the 3AM card." :
             "You said you want off the pills. Nothing here is something to swallow. It's what you do between dinner and bed.";
   var will = a.willing === "Yes, let's do it" ? "And you're willing to try 5 small evening changes for 14 nights. That's all I ask." :
              a.willing === "Maybe" ? "You said maybe on the 14 nights. Fair. Read what I'd do first, then decide." :
@@ -739,6 +758,7 @@ function renderResult(){
   // Card 4
   h += '<div class="card" data-card="4"><h2>Your 14 nights, if you want them</h2>' +
        '<ul class="data">' +
+       '<li><span>You</span><span>' + esc(a.sex || "—") + '</span></li>' +
        '<li><span>Wake-up time</span><span>' + esc(a.wake || "—") + '</span></li>' +
        '<li><span>What happens</span><span>' + esc(a.happens || "—") + '</span></li>' +
        '<li><span>Tried</span><span>' + esc(tried.length ? tried.join(", ") : "Nothing yet") + '</span></li>' +
@@ -754,14 +774,16 @@ function renderResult(){
        '</ul></div>';
   document.getElementById("r-body").innerHTML = h;
   show("s-result");
-  track("result_view", {profile: prof});
+  track("result_view", {profile: prof, sex: a.sex});
   for (var c=1;c<=4;c++) track("result_card_view", {card: c});
 }
 
 function ctaClick(){
   track("cta_click", {profile: profileOf(state.answers || {}), price: 27});
-  if (WHOP_LINK && WHOP_LINK !== "WHOP_LINK"){ window.location.href = WHOP_LINK; }
-  else { console.warn("WHOP_LINK not set"); }
+  track("checkout_view", {price: 27});
+  chrome(false, false);
+  show("s-pay");
+  window.scrollTo(0,0);
   return false;
 }
 
@@ -778,7 +800,6 @@ function restart(){
 
 // ===== BOOT =====
 (function(){
-  if (WHOP_LINK && WHOP_LINK !== "WHOP_LINK") document.getElementById("cta").href = WHOP_LINK;
   if (state.done && state.i < RESULT_IDX){ state.i = RESULT_IDX; }   // survives a refresh
   if (FLOW[state.i].type === "wait") state.i = nextIdx(state.i);
   render();
