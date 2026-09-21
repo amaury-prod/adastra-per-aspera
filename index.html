@@ -3,68 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adastra Per Aspera FZCO — Digital Media & Software, Dubai</title>
-<meta name="description" content="Adastra Per Aspera FZCO is a Dubai-based company building digital media, social marketing services and mobile applications.">
+<title>Adastra Per Aspera — Digital Media &amp; Software, Dubai</title>
+<meta name="description" content="Adastra Per Aspera FZCO is a Dubai-based studio producing digital media, social marketing services and mobile applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#111;--muted:#666;--line:#e6e6e6;--accent:#1d4ed8}
+  :root{--bg:#0b0a08;--bg2:#12100c;--ink:#ece4d2;--muted:#9c927c;--gold:#c9a75a;--gold2:#8a6d2f;--line:rgba(201,167,90,.22)}
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6}
-  header,main,footer{max-width:820px;margin:0 auto;padding:0 24px}
-  header{padding-top:48px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-  .brand{font-weight:700;letter-spacing:.08em;font-size:14px;text-transform:uppercase}
-  h1{font-size:40px;line-height:1.15;margin:24px 0 12px}
-  .lead{font-size:19px;color:var(--muted);max-width:640px}
-  section{padding:40px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:22px;margin:0 0 16px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-  .card h3{margin:0 0 6px;font-size:16px}
-  .card p{margin:0;color:var(--muted);font-size:15px}
-  dl{display:grid;grid-template-columns:180px 1fr;gap:8px 16px;margin:0}
-  dt{color:var(--muted)}dd{margin:0}
-  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-  footer{padding:32px 24px;color:var(--muted);font-size:14px}
-  @media(max-width:600px){h1{font-size:30px}dl{grid-template-columns:1fr}dt{margin-top:8px}}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
+    radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,167,90,.14),transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.01em}
+  a{color:var(--gold);text-decoration:none}a:hover{color:var(--ink)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;position:relative}
+
+  nav{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg),rgba(11,10,8,.85));backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:12px;color:var(--ink);font-family:"Cormorant Garamond",serif;font-size:19px;letter-spacing:.18em;text-transform:uppercase}
+  .logo svg{width:26px;height:26px}
+  nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+  nav ul a{color:var(--muted)}nav ul a:hover{color:var(--gold)}
+
+  header{padding:130px 0 110px;text-align:center;position:relative}
+  .eyebrow{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
+  .eyebrow::before,.eyebrow::after{content:"";display:inline-block;width:40px;height:1px;background:var(--gold2);vertical-align:middle;margin:0 16px}
+  h1{font-size:clamp(44px,7vw,84px);line-height:1.02;margin:0 0 28px;font-weight:400}
+  h1 em{font-style:italic;color:var(--gold)}
+  .lead{max-width:600px;margin:0 auto 44px;color:var(--muted);font-size:18px}
+  .btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:14px 34px;font-size:12px;letter-spacing:.25em;text-transform:uppercase;transition:.3s}
+  .btn:hover{background:var(--gold);color:var(--bg)}
+  .star{position:absolute;left:50%;top:60px;transform:translateX(-50%);width:120px;opacity:.9}
+
+  .rule{display:flex;align-items:center;gap:20px;justify-content:center;margin:0 auto 70px;color:var(--gold2)}
+  .rule::before,.rule::after{content:"";flex:1;max-width:220px;height:1px;background:linear-gradient(90deg,transparent,var(--gold2))}
+  .rule::after{background:linear-gradient(90deg,var(--gold2),transparent)}
+
+  section{padding:100px 0;border-top:1px solid var(--line)}
+  .kicker{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  h2{font-size:clamp(34px,4.5vw,52px);line-height:1.1;margin:0 0 20px;font-weight:400}
+  .intro{color:var(--muted);max-width:560px;font-size:17px;margin-bottom:60px}
+
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .col{background:var(--bg2);padding:44px 34px}
+  .col .num{font-family:"Cormorant Garamond",serif;font-size:15px;letter-spacing:.3em;color:var(--gold2);margin-bottom:26px}
+  .col h3{font-size:27px;margin:0 0 14px;font-weight:500}
+  .col p{margin:0;color:var(--muted);font-size:15px}
+
+  .verse{padding:110px 0;text-align:center}
+  .verse blockquote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(26px,3.6vw,40px);line-height:1.35;margin:0 auto 22px;max-width:760px;font-weight:400}
+  .verse cite{font-style:normal;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
+
+  .about{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
+  dl{margin:0;border-top:1px solid var(--line)}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px}
+  dt{color:var(--gold2);letter-spacing:.15em;text-transform:uppercase;font-size:11px;padding-top:3px}
+  dd{margin:0;color:var(--ink)}
+
+  .contact{text-align:center}
+  .contact .mail{font-family:"Cormorant Garamond",serif;font-size:clamp(26px,4vw,44px);display:inline-block;border-bottom:1px solid var(--gold2);padding-bottom:6px}
+
+  footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:12px;letter-spacing:.08em}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--muted)}
+
+  @media(max-width:820px){nav ul{display:none}.cols{grid-template-columns:1fr}.about{grid-template-columns:1fr;gap:40px}.row{grid-template-columns:1fr;gap:4px}header{padding:100px 0 80px}section{padding:70px 0}}
 </style>
 </head>
 <body>
-<header>
-  <div class="brand">Adastra Per Aspera FZCO</div>
-  <h1>Digital media, social marketing and mobile apps — from Dubai.</h1>
-  <p class="lead">We design and run digital content operations for online audiences, and build the software and mobile applications that power them.</p>
-</header>
 
-<main>
-  <section id="services">
-    <h2>What we do</h2>
-    <div class="grid">
-      <div class="card"><h3>Social media marketing</h3><p>Strategy, production and growth of content channels for brands and creators.</p></div>
-      <div class="card"><h3>Video & content production</h3><p>Scripting, editing and publishing of video content at scale.</p></div>
-      <div class="card"><h3>Mobile & web applications</h3><p>Design and development of iOS, Android and web applications supporting our media activities.</p></div>
+<nav><div class="wrap">
+  <a class="logo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a75a" stroke-width="1"><path d="M12 1v22M1 12h22M4.2 4.2l15.6 15.6M19.8 4.2L4.2 19.8"/><circle cx="12" cy="12" r="3.2"/></svg>Adastra</a>
+  <ul><li><a href="#work">Work</a></li><li><a href="#company">Company</a></li><li><a href="#contact">Contact</a></li></ul>
+</div></nav>
+
+<header><div class="wrap">
+  <svg class="star" viewBox="0 0 120 120" fill="none" stroke="#c9a75a" stroke-width=".8"><path d="M60 4v112M4 60h112M20 20l80 80M100 20L20 100" opacity=".5"/><circle cx="60" cy="60" r="18" opacity=".8"/><circle cx="60" cy="60" r="2.5" fill="#c9a75a" stroke="none"/></svg>
+  <div class="eyebrow" style="margin-top:100px">Dubai · Est. MMXXV</div>
+  <h1>Through hardship,<br><em>to the stars.</em></h1>
+  <p class="lead">Adastra Per Aspera is a Dubai studio that builds audiences: digital media, social marketing, and the software and mobile applications behind them.</p>
+  <a class="btn" href="#work">What we do</a>
+</div></header>
+
+<section id="work"><div class="wrap">
+  <div class="kicker">Chapter I</div>
+  <h2>Three crafts, one house.</h2>
+  <p class="intro">From the first line of a script to the app in your pocket, every piece is made under one roof.</p>
+  <div class="cols">
+    <div class="col"><div class="num">I</div><h3>Social media marketing</h3><p>Strategy, production and growth of content channels for brands, creators and our own properties.</p></div>
+    <div class="col"><div class="num">II</div><h3>Video &amp; content production</h3><p>Scripting, editing and publishing of long-form and short-form video, at scale, in several languages.</p></div>
+    <div class="col"><div class="num">III</div><h3>Mobile &amp; web applications</h3><p>Design and development of iOS, Android and web applications that carry our media to their audiences.</p></div>
+  </div>
+</div></section>
+
+<div class="verse"><div class="wrap">
+  <blockquote>“Per aspera ad astra.”</blockquote>
+  <cite>Seneca — Hercules Furens</cite>
+</div></div>
+
+<section id="company"><div class="wrap">
+  <div class="about">
+    <div>
+      <div class="kicker">Chapter II</div>
+      <h2>The company.</h2>
+      <p class="intro" style="margin-bottom:0">Adastra Per Aspera FZCO is a free zone company licensed by the Dubai Integrated Economic Zones Authority, established in January 2025 and headquartered in Dubai Silicon Oasis.</p>
     </div>
-  </section>
-
-  <section id="company">
-    <h2>Company</h2>
     <dl>
-      <dt>Legal name</dt><dd>ADASTRA PER ASPERA - FZCO</dd>
-      <dt>Legal form</dt><dd>Free Zone Company (FZCO)</dd>
-      <dt>Licence</dt><dd>No. 56537 — Dubai Integrated Economic Zones Authority (IFZA)</dd>
-      <dt>Registered address</dt><dd>DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai, United Arab Emirates</dd>
-      <dt>Manager</dt><dd>Amaury Witrant</dd>
+      <div class="row"><dt>Legal name</dt><dd>ADASTRA PER ASPERA - FZCO</dd></div>
+      <div class="row"><dt>Legal form</dt><dd>Free Zone Company (FZCO)</dd></div>
+      <div class="row"><dt>Licence</dt><dd>No. 56537 — IFZA / DIEZ Authority</dd></div>
+      <div class="row"><dt>Address</dt><dd>DSO-IFZA, IFZA Properties, Dubai Silicon Oasis, Dubai, United Arab Emirates</dd></div>
+      <div class="row"><dt>Manager</dt><dd>Amaury Witrant</dd></div>
     </dl>
-  </section>
+  </div>
+</div></section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p><a href="mailto:contact@adastra-per-aspera.org">contact@adastra-per-aspera.org</a></p>
-  </section>
+<section id="contact" class="contact"><div class="wrap">
+  <div class="kicker">Chapter III</div>
+  <h2>Write to us.</h2>
+  <p class="intro" style="margin:0 auto 34px">For partnerships, press and app support.</p>
+  <a class="mail" href="mailto:contact@adastra-per-aspera.org">contact@adastra-per-aspera.org</a>
+</div></section>
 
-  <section id="privacy">
-    <h2>Privacy policy</h2>
-    <p>This website does not use cookies, analytics or tracking. We only process the personal data you send us by email, for the sole purpose of answering you. Applications published by Adastra Per Aspera FZCO carry their own privacy policy, available on their App Store page. Requests regarding your data: <a href="mailto:contact@adastra-per-aspera.org">contact@adastra-per-aspera.org</a>.</p>
-  </section>
-</main>
+<section id="privacy" style="padding:60px 0"><div class="wrap">
+  <div class="kicker">Privacy</div>
+  <p style="color:var(--muted);font-size:14px;max-width:720px;margin:0">This website uses no cookies, analytics or tracking. Personal data you send us by email is processed only to answer you. Applications published by Adastra Per Aspera FZCO carry their own privacy policy on their App Store page. Data requests: <a href="mailto:contact@adastra-per-aspera.org">contact@adastra-per-aspera.org</a>.</p>
+</div></section>
 
-<footer>© 2026 Adastra Per Aspera FZCO. All rights reserved.</footer>
+<footer><div class="wrap">
+  <span>© 2026 Adastra Per Aspera FZCO · Dubai</span>
+  <span><a href="#privacy">Privacy</a> · <a href="mailto:contact@adastra-per-aspera.org">Contact</a></span>
+</div></footer>
 </body>
 </html>
