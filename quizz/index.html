@@ -263,12 +263,28 @@
 
 // ===== TRACKING =====
 window.dataLayer = window.dataLayer || [];
+// ===== TRACKING (collecteur : https://t.vaulgard.com/q/t) =====
+var TRACK_URL = "https://t.vaulgard.com/q/t";
+var SID = (function(){ try{ var k="3am_sid", v=localStorage.getItem(k); if(!v){ v=(Date.now().toString(36)+Math.random().toString(36).slice(2,10)); localStorage.setItem(k,v);} return v; }catch(e){ return "anon"+Date.now(); } })();
+var META = (function(){ var m={url:location.href, ref:document.referrer||"", ua:navigator.userAgent, lang:navigator.language||"", w:window.innerWidth};
+  try{ var p=new URLSearchParams(location.search); ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"].forEach(function(k){ if(p.get(k)) m[k]=p.get(k); }); }catch(e){}
+  return m; })();
+var _tq=[], _tt=null;
+function flushTrack(){
+  if(!_tq.length) return; var body=JSON.stringify({sid:SID, meta:META, events:_tq}); _tq=[]; _tt=null;
+  try{ if(navigator.sendBeacon && navigator.sendBeacon(TRACK_URL, new Blob([body],{type:"text/plain"}))) return; }catch(e){}
+  try{ fetch(TRACK_URL,{method:"POST",body:body,headers:{"Content-Type":"text/plain"},keepalive:true}).catch(function(){}); }catch(e){}
+}
 function track(event, data){
   data = data || {};
   console.log("[track]", event, JSON.stringify(data));
   window.dataLayer.push(Object.assign({event: event}, data));
   if (typeof window.fbq === "function") window.fbq("trackCustom", event, data);
+  var s = (typeof FLOW!=="undefined" && typeof state!=="undefined" && FLOW[state.i]) ? FLOW[state.i] : null;
+  _tq.push({event:event, ts:Date.now(), idx: state ? state.i : null, screen: s ? (s.id||s.type) : null, data:data});
+  if(!_tt) _tt=setTimeout(flushTrack, 400);
 }
+window.addEventListener("pagehide", flushTrack); document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="hidden") flushTrack(); });
 
 // ===== FLOW =====
 var ICON = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>';
@@ -489,6 +505,7 @@ function chrome(back, count){
 
 function render(){
   var s = FLOW[state.i];
+  track("screen_view", {screen: s.id||s.type});
   if (s.type === "home"){ chrome(false, false); show("s-home"); return; }
   if (s.type === "wait"){ chrome(false, false); analyze(); return; }
   if (s.type === "result"){ chrome(false, false); renderResult(); return; }
@@ -800,6 +817,7 @@ function restart(){
 
 // ===== BOOT =====
 (function(){
+  track("page_view", {v:"v6"});
   if (state.done && state.i < RESULT_IDX){ state.i = RESULT_IDX; }   // survives a refresh
   if (FLOW[state.i].type === "wait") state.i = nextIdx(state.i);
   render();
