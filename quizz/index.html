@@ -141,7 +141,7 @@
 <section class="screen" id="s-home">
   <img class="photo home" src="marcus.jpg" alt="Marcus Booker" width="480" height="480">
   <h1 class="center" style="margin-top:6px">Hey, Marcus here.</h1>
-  <p class="sub">If you wake up at 3AM and can't get back to sleep, this is for you.</p>
+  <p class="sub">If you're a man over 50 who wakes up at 3AM and can't get back to sleep, this is for you.</p>
   <p class="sub">It takes 5 minutes. No email, nothing to buy. Just a few questions and I'll tell you what your night is trying to say.</p>
   <button class="btn btn-warm" style="margin-top:8px" onclick="startQuiz()">Let's go</button>
   <p class="center small" style="margin-top:16px">60-something, not a doctor. Just a man who used to see 3:07 every night.</p>
@@ -174,6 +174,7 @@
 <!-- THE 5 EVENING MOVES -->
 <section class="screen" id="s-moves">
   <h2>Here's what I'd do in your shoes</h2>
+  <p class="small" style="margin:-4px 0 12px">The five moves. Then, if you want it, the night-by-night version at the bottom.</p>
   <p>Five small things between dinner and lights out. Nothing to swallow, nothing to buy at a pharmacy.</p>
   <ol class="steps">
     <li><div><b>Eat dinner later, or make it bigger.</b><span>A full tank at bedtime means no wake-up signal at 3.</span></div></li>
@@ -189,14 +190,14 @@
 <!-- ONE MORE THING + OFFER -->
 <section class="screen" id="s-more">
   <h2 style="margin-top:14px">One more thing.</h2>
-  <p class="lead">If you want to go further, I put everything into 14 nights. One move a night, with the cards and the tonics. It's $27.</p>
-  <p class="lead">It also helps me keep the page going and pay for the content. So thank you if you do.</p>
-  <p class="lead">And if you don't, you already have tonight's three things. Go try them.</p>
+  <p class="lead"><span id="more-time">You said yes, let's do it.</span> Good. Then don't do it from memory.</p>
+  <p class="lead">I wrote the whole thing down, night by night. Night 1 is tonight. You read one page, you do one thing, you go to bed.</p>
+  <p class="lead">It's <b>$17</b>, once. Less than a bottle of the pills that didn't work. It also keeps this page running, so thank you if you do.</p>
 
   <div class="card" id="offer">
     <span class="tag">The 3AM Reset</span>
-    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for People Over 50</h2>
-    <p>Sleep through the night again — in 14 nights, without one more pill.</p>
+    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for Men Over 50</h2>
+    <p><b>Sleep through the night again in 14 nights, or you pay nothing.</b> Written for men over 50. Nothing to swallow.</p>
     <h3>What you get</h3>
     <ul class="stack">
       <li><span><b>The 14-Night Sleep Routine</b>The guide. Night by night, what to eat, drink and do in the evening. Reads easy on your phone.</span></li>
@@ -205,10 +206,10 @@
       <li><span><b>7 Evening Tonics</b>Seven evening drinks. Garlic, hibiscus, chamomile, ginger… one page each.</span></li>
       <li><span><b>The 14-Night Tracker</b>One page. Tick off each night and watch the pattern change.</span></li>
     </ul>
-    <div class="price"><span class="was">$47</span> <span class="now">$27</span></div>
-    <p class="center small" style="margin-bottom:16px">One-time. Yours to keep.</p>
-    <a class="btn btn-warm btn-cta" id="cta" href="#" onclick="return ctaClick()">Get the 14 nights — $27</a>
-    <p class="center small" style="margin-top:12px">Instant access on your phone.</p>
+    <div class="price"><span class="was">$47</span> <span class="now">$17</span></div>
+    <p class="center small" style="margin-bottom:16px">One-time. No subscription. Yours to keep.</p>
+    <a class="btn btn-warm btn-cta" id="cta" href="#" onclick="return ctaClick()">Start Night 1 tonight — $17</a>
+    <p class="center small" style="margin-top:12px">On your phone in one minute. 30-day money back, no questions.</p>
 
     <div class="guarantee">
       <div class="badge">30<br>DAYS</div>
@@ -225,7 +226,7 @@
     <div class="faq">
       <details><summary>Is this a physical book?</summary><p>No. It's a digital guide you read on your phone or computer, ready the minute you order. The cards are made to print at home if you like paper on the nightstand.</p></details>
       <details><summary>Do I need to buy anything?</summary><p>Nothing fancy. The tonics use things like garlic, ginger, chamomile and hibiscus. Most of it is already in your kitchen or at any grocery store.</p></details>
-      <details><summary>What if it doesn't work for me?</summary><p>Then you email us within 30 days and you get your money back. No questions, no hoops. Marcus would rather you keep your $27 than keep something you don't use.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>Then you email us within 30 days and you get your money back. No questions, no hoops. Marcus would rather you keep your $17 than keep something you don't use.</p></details>
     </div>
 
     <p class="small" style="margin-top:20px">This guide shares Marcus's personal evening routine and is for general information only. It is not medical advice and does not diagnose or treat any condition. Talk to your doctor before changing any supplement if you take medication.</p>
@@ -237,7 +238,7 @@
 <!-- WARM END (after "No thanks") -->
 <section class="screen" id="s-pay">
   <h1 class="center">Your 14 nights</h1>
-  <p class="sub center">$27, one time. The download lands in your email right after.</p>
+  <p class="sub center">$17, one time. The download lands in your email right after. 30-day money back.</p>
   <div data-whop-checkout-plan-id="plan_m7PMgQAy7PS52"
        data-whop-checkout-theme="light"
        data-whop-checkout-theme-accent-color="#e8913a"
@@ -292,40 +293,8 @@ var ICON = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 
 function has(a, k, v){ return (a[k] || []).indexOf(v) > -1; }
 function pills(a){ return has(a, "tried", "Sleeping pills"); }
 
-var REASON_INSIGHT = {
-  "Be a normal human during the day": {t:"Tired of being tired. I know that one.", b:[
-    "The day is built the night before.",
-    "A walking zombie isn't lazy. You're short on sleep.",
-    "Fix the night and the day fixes itself."]},
-  "Stop worrying about my memory": {t:"Your brain isn't broken. It's tired.", b:[
-    "A tired brain loses the keys. A rested one finds them.",
-    "The deep sleep you miss at 3 is where memory gets filed.",
-    "Get the night back and the fog lifts."]},
-  "My health long term": {t:"Your body does its repair work at night.", b:[
-    "Every full night, the body catches up.",
-    "Every short night goes on the tab.",
-    "That's the right reason to fix it. Not vanity. Years."]},
-  "Stop being cranky with the people I love": {t:"Cranky isn't who you are. It's your night talking.", b:[
-    "Nobody is patient on four hours of sleep.",
-    "The people you love get the leftovers of a bad night.",
-    "Give them the rested you back."]},
-  "Stop getting up to pee and never falling back asleep": {t:"Getting up is normal after 50. Not falling back asleep is the part we fix.", b:[
-    "Less liquid after 8PM.",
-    "And the 3AM card for when you're back in bed."]},
-  "Get off the pills": {t:"You don't want one more thing to swallow.", b:[
-    "Pills answer the bedtime problem.",
-    "3AM is a different problem.",
-    "The evening is where that one gets solved."]}
-};
-
 // Marcus's stories, first person. One title, one photo, 150-200 words.
 var STORIES = {
-  melatonin: {t:"The night I gave up on melatonin", p:[
-    "I want to tell you about one night. I was maybe 58. Tired of being tired. A friend at church swore by melatonin. So I took one. Lights out at eleven. I fell asleep fast. I felt proud.",
-    "Then I woke up. The clock said 11:45. Forty-five minutes. And I'd been dreaming about goats. Talking goats, in my kitchen, arguing about the weather. I lay there wide awake till four.",
-    "Next night, same thing. Different goats. I tried a bigger dose. Then a smaller one. Then the gummies. Same story.",
-    "Here's what I finally understood. Melatonin was fixing bedtime. Bedtime was never my problem. I could fall asleep fine. My problem was 3AM. And nothing I took at eleven touched 3AM.",
-    "That's when I stopped fixing bedtime. I started looking at my evening instead. What I ate. What I drank. How warm the house was. That's where the night was being decided. Hours before I ever lay down."]},
   grandmother: {t:"What my grandmother knew", p:[
     "My grandmother never had a sleep problem. Not one I ever heard about. Every evening, same thing. She'd stand at the stove in that little kitchen. A pot of water going. Garlic on the board. A lemon. Honey from a jar with no label.",
     "She'd make her hot drink and sit down. Nobody rushed her. She'd sip it slow while the house went quiet. Then she'd go to bed. And she'd sleep till the rooster.",
@@ -337,13 +306,7 @@ var STORIES = {
     "Here's the math I finally did. Dinner at six. Bed at eleven. That's five hours before I even lay down. By three, it had been nine hours. Nine hours on an empty tank.",
     "My body wasn't broken. It was hungry. And a hungry body doesn't stay quiet. It sends a wake-up signal. That signal is what popped my eyes open.",
     "One night we ate late. Company came by. We didn't sit down till almost eight. Real food too. Chicken, greens, sweet potato. I went to bed at eleven like always. And I woke up at six-thirty. Straight through.",
-    "I thought it was luck. So I tried it again the next night. And the next. It wasn't luck. It was dinner. Nobody had ever told me to look there."]},
-  why: {t:"Why I made this for you", p:[
-    "Every day I open my messages. Hundreds of them. Most from people like you. “Marcus, I'm up at 3 every night.” “Marcus, I'm a walking zombie.” “Marcus, I've tried everything.”",
-    "I read every one. I can't answer every one. There's one of me. And there's a lot of you. It kept me up, honestly. Not at 3. At my desk.",
-    "Because I know what to say. I lived it. I just can't type it out five hundred times. So I sat down and wrote it once. All of it. What I eat. What I drink. What I do in the last hour. What I do when I still wake up.",
-    "That's what this is. Not a doctor's page. Not a pharmacy. Just a man who used to see 3:07 every night. And doesn't anymore.",
-    "You made it this far, so you get it first. Give me a second and I'll tell you what your answers say."]}
+    "I thought it was luck. So I tried it again the next night. And the next. It wasn't luck. It was dinner. Nobody had ever told me to look there."]}
 };
 
 // Try this tonight. Complete, nothing held back.
@@ -374,32 +337,15 @@ var TIPS = {
 var FLOW = [
   {id:"home", type:"home"},
 
-  {id:"sex", type:"q", step:1, title:"Are you a man or a woman?",
-   why:"The night changes differently for each of us.",
-   opts:["Woman","Man","Rather not say"]},
-  {id:"goal", type:"q", step:1, multi:true, title:"What would sleeping well mean for you?",
-   why:"So I know what you're really after. Pick all that apply.",
-   opts:["Sleep through the night","Fall asleep faster","Wake up with energy","Stop relying on pills or gummies"]},
-  {id:"age", type:"q", step:1, title:"How old are you?",
-   why:"After 50 the night changes. Marcus wants to know where you are.",
-   opts:["Under 45","45–54","55–64","65–74","75+"]},
   {id:"howlong", type:"q", step:1, title:"How long has the 3AM thing been going on?",
    why:"A few weeks and a few years are different animals.",
    opts:["A few weeks","A few months","1–2 years","Longer than I want to admit"]},
-  {id:"why3", type:"q", step:1, title:"Do you know why you wake up at 3 and not at 1?",
-   why:"Most people don't. Nobody ever told them.",
-   opts:["Yes","I think so","No idea"]},
   {id:"i_mech1", type:"insight", step:1, name:"mechanism_1", btn:"Makes sense",
-   build:function(a){ return {pre: a.why3 === "Yes" ? "Then you're ahead of most. Here's how I'd put it." : a.why3 === "I think so" ? "Here's the piece most people are missing." : "Here's the piece nobody told you.",
-     t:"The 3AM Dip.", lead:"Your body runs low on fuel in the small hours. It sends a wake-up signal to make up for it. That signal is what pops your eyes open at 3."}; }},
-  {id:"i_mech2", type:"insight", step:1, name:"mechanism_2", btn:"Makes sense",
-   build:function(){ return {t:"You can't fix 3AM at 11PM.", lead:"By then your evening is already baked in. Dinner is done. The screen light already hit your eyes. The house is already too warm. That's why the tea alone didn't work."}; }},
+   build:function(a){ return {pre:"Here's the piece nobody told you.",
+     t:"The 3AM Dip.", lead:"Your body runs low on fuel in the small hours. It sends a wake-up signal to make up for it. That signal is what pops your eyes open at 3. And you can't fix it at 11PM. By then dinner is done, the screen light already hit your eyes, the house is already too warm. That's why the tea alone didn't work."}; }},
   {id:"reason", type:"q", step:1, title:"What's the main reason you want this fixed?",
    why:"This shapes what I'd tell you at the end.",
    opts:["Be a normal human during the day","Stop worrying about my memory","My health long term","Stop being cranky with the people I love","Stop getting up to pee and never falling back asleep","Get off the pills"]},
-  {id:"i_reason", type:"insight", step:1, name:"reason", btn:"Sounds right",
-   build:function(a){ return REASON_INSIGHT[a.reason] || REASON_INSIGHT["Be a normal human during the day"]; }},
-  {id:"st_melatonin", type:"story", step:1, name:"melatonin"},
 
   {id:"wake", type:"q", step:2, title:"What time do you usually wake up?",
    why:"The hour tells me which part of the night is off.",
@@ -409,7 +355,7 @@ var FLOW = [
    opts:["Hot, sweating","Brain won't settle","Heart racing","I just lie there wide awake"]},
   {id:"tried", type:"q", step:2, multi:true, excl:"Nothing yet", title:"What have you already tried?",
    why:"So I don't tell you to do what already failed. Pick all that apply.",
-   opts:function(a){ return a.sex === "Man" ? ["Melatonin","Teas","Gummies or CBD","Sleeping pills","Nothing yet"] : ["Melatonin","Teas","Gummies or CBD","Sleeping pills","Hormones (HRT)","Nothing yet"]; }},
+   opts:["Melatonin","Teas","Gummies or CBD","Sleeping pills","Nothing yet"]},
   {id:"i_melatonin", type:"insight", step:2, name:"melatonin", btn:"Got it",
    when:function(a){ return has(a,"tried","Melatonin") || has(a,"tried","Gummies or CBD"); },
    build:function(a){ return {pre:"You might already know this but…", t:"Melatonin puts you to sleep. It doesn't keep you asleep.", b:[
@@ -428,12 +374,6 @@ var FLOW = [
      "That part lives in your evening, hours before the pill.",
      a.pill_stop === "Yes" ? "Wanting to stop is a good sign. Build the evening first." : "Keep what works for you. Add the evening on top."],
      soft:"And talk to your doctor before changing anything."}; }},
-  {id:"i_hrt", type:"insight", step:2, name:"hrt", btn:"Got it",
-   when:function(a){ return a.sex !== "Man" && has(a,"tried","Hormones (HRT)"); },
-   build:function(a){ return {t:"Hormones are one piece. The fuel tank is another piece.", b:[
-     "Some of you are on HRT and still wake up.",
-     "That makes sense. Two pieces, two fixes.",
-     "Keep what your doctor gave you. Add the evening."]}; }},
   {id:"dinner", type:"q", step:2, title:"What time do you usually eat dinner?",
    why:"This one matters more than you think.",
    opts:["Before 6PM","6–7PM","7–8PM","After 8PM","It varies"]},
@@ -443,20 +383,11 @@ var FLOW = [
    opts:["Wine or a drink","Tea","Coffee after 3PM","Water","Nothing much"]},
   {id:"st_grandmother", type:"story", step:2, name:"grandmother"},
   {id:"tip_drink", type:"tip", step:2, name:"drink"},
-  {id:"room", type:"q", step:2, title:"How warm is your bedroom?",
-   why:"A warm room and a hot wake-up often go together.",
-   opts:["Warm and cosy","About right","Cool","No idea"]},
   {id:"last", type:"q", step:2, title:"What's the last thing you do before lights out?",
    why:"The last ten minutes set the first three hours.",
    opts:["Phone or TV","Read","Lie there and think","Pray or breathe"]},
 
-  {id:"race", type:"q", step:3, title:"Does your mind race when you wake up?",
-   why:"A racing mind needs one extra thing on the nightstand.",
-   opts:["Often","Sometimes","Never"]},
   {id:"tip_notebook", type:"tip", step:3, name:"notebook"},
-  {id:"hours", type:"q", step:3, title:"How many hours do you actually sleep?",
-   why:"Honest number. Nobody's grading you.",
-   opts:["Under 5","5–6","6–7","Over 7"]},
   {id:"willing", type:"q", step:3, title:"Are you willing to try 5 small evening changes for 14 nights?",
    why:"Small changes, but you have to actually do them.",
    opts:["Yes, let's do it","Maybe","I've tried everything"]},
@@ -464,14 +395,6 @@ var FLOW = [
    when:function(a){ return a.willing === "I've tried everything"; },
    build:function(){ return {t:"That's exactly who this is for.", lead:"If the teas and the pills had worked, you wouldn't be here. This isn't one more thing for bedtime. It's the evening, and nobody told you to look there."}; }},
   {id:"tip_awake", type:"tip", step:3, name:"awake"},
-  {id:"future", type:"q", step:3, multi:true, title:"Picture yourself 14 nights from now. How would you like to feel?",
-   why:"Pick all that apply. This is what we're aiming at.",
-   opts:["Sleeping through","Waking up rested","Clear head in the morning","Calm in bed","Not thinking about sleep at all"]},
-  {id:"time", type:"q", step:3, title:"How much of your evening can you give this?",
-   why:"Be honest. Ten minutes done beats an hour planned.",
-   opts:["10 minutes","20 minutes","Half an hour","Whatever it takes"]},
-  {id:"st_why", type:"story", step:3, name:"why"},
-
   {id:"wait", type:"wait"},
   {id:"result", type:"result"},
   {id:"moves", type:"moves"},
@@ -481,7 +404,7 @@ var RESULT_IDX = FLOW.length - 3;
 var WAIT_IDX = FLOW.length - 4;
 
 // ===== STATE =====
-var KEY = "3am_quiz_v4";
+var KEY = "3am_quiz_v8";
 var state = load() || {i:0, answers:{}, done:false};
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
@@ -510,7 +433,7 @@ function render(){
   if (s.type === "wait"){ chrome(false, false); analyze(); return; }
   if (s.type === "result"){ chrome(false, false); renderResult(); return; }
   if (s.type === "moves"){ chrome(true, false); show("s-moves"); return; }
-  if (s.type === "more"){ chrome(true, false); show("s-more"); track("offer_view", {profile: profileOf(state.answers || {})}); return; }
+  if (s.type === "more"){ chrome(true, false); fillMore(); show("s-more"); track("offer_view", {profile: profileOf(state.answers || {})}); return; }
   chrome(true, true);
   progress();
   var box = document.getElementById("q-body"); box.innerHTML = "";
@@ -537,7 +460,7 @@ function photo(){ var img = el("img", "photo"); img.src = "marcus.jpg"; img.alt 
 
 function renderProof(s, box){
   box.appendChild(photo());
-  box.appendChild(el("h2", "center", "Made for the people who write to me every week."));
+  box.appendChild(el("h2", "center", "Made for the men who write to me every week."));
   box.appendChild(el("p", "lead center", "Not a doctor. Just what worked for me and for them."));
   var n = el("button", "btn btn-warm", "Okay"); n.type = "button";
   n.onclick = function(){ advance(); };
@@ -647,7 +570,7 @@ function startQuiz(){
 
 function advance(){
   state.i = nextIdx(state.i); save();
-  if (FLOW[state.i].type === "wait"){ state.done = true; save(); track("quiz_complete", {sex: state.answers.sex}); }
+  if (FLOW[state.i].type === "wait"){ state.done = true; save(); track("quiz_complete"); }
   render();
 }
 
@@ -678,7 +601,7 @@ function analyze(){
 // ===== RESULT =====
 function profileOf(a){
   if (a.happens === "Hot, sweating") return "The Hot Wake-Up";
-  if (a.happens === "Brain won't settle" || a.race === "Often") return "The Racing Mind";
+  if (a.happens === "Brain won't settle") return "The Racing Mind";
   return "The 3AM Dip";
 }
 
@@ -687,8 +610,6 @@ function renderResult(){
   var prof = profileOf(a);
   var tried = a.tried || [];
   var drink = a.drink || [];
-  var goal = a.goal || [];
-  var future = a.future || [];
 
   // 1. Your night
   var w = a.wake;
@@ -702,7 +623,7 @@ function renderResult(){
             a.howlong === "A few months" ? "A few months of that is enough to wear anyone down." :
             a.howlong === "1–2 years" ? "One or two years of that. That's a long time to be tired." :
             "And it's been going on longer than you want to admit. I know that feeling.";
-  var intro = prof === "The Hot Wake-Up" ? "The hot wake-up is the fuel dip with the heat turned up. " + (a.sex === "Woman" ? "Hormones do the turning." : "The room, the drink and the dinner do the turning.") :
+  var intro = prof === "The Hot Wake-Up" ? "The hot wake-up is the fuel dip with the heat turned up. The room, the drink and the dinner do the turning." :
               prof === "The Racing Mind" ? "Your body sends the wake-up signal, and your mind grabs it and runs." :
               "The classic 3AM Dip. It's the most common one I hear about.";
 
@@ -719,9 +640,6 @@ function renderResult(){
   if (drink.indexOf("Tea") > -1) dr.push("Tea is a good instinct. The kind, and the hour, are what I'd change. You have my grandmother's recipe now.");
   if (drink.indexOf("Water") > -1 && dr.length === 0) dr.push("Water in the evening is fine. It just doesn't do anything for 3AM.");
   if (drink.indexOf("Nothing much") > -1 || (!dr.length && !drink.length)) dr.push("You don't drink much in the evening. Good. That leaves room for the hot drink I gave you.");
-  var room = a.room === "Warm and cosy" ? "And you sleep in a warm, cosy room." + (prof === "The Hot Wake-Up" ? " With a hot wake-up, that's the first thing I'd change." : " Cosy at 10 is too warm at 3.") :
-             a.room === "Cool" ? "Your room is cool. Good, one thing already right." :
-             a.room === "No idea" ? "You've never checked how warm the room is. Worth a look." : "";
   var last = a.last === "Phone or TV" ? "The phone or the TV is the last thing you see. That light tells your body it's noon." :
              a.last === "Lie there and think" ? "You lie there and think before lights out. The day follows you into bed. That's what the notebook is for." :
              a.last === "Pray or breathe" ? "You pray or breathe before lights out. Keep that. It's the right instinct." :
@@ -733,11 +651,10 @@ function renderResult(){
     tr = "You haven't tried much yet. Honestly, that's good news. No money spent fighting the wrong hour.";
   } else {
     var bits = [];
-    if (tried.indexOf("Melatonin") > -1) bits.push("You tried melatonin. So did I. You read about the goats.");
+    if (tried.indexOf("Melatonin") > -1) bits.push("You tried melatonin. So did I.");
     if (tried.indexOf("Teas") > -1) bits.push("The teas are nice. A cup at bedtime doesn't change what your body does at 3.");
     if (tried.indexOf("Gummies or CBD") > -1) bits.push("Gummies take the edge off the evening. They don't touch the middle of the night.");
     if (tried.indexOf("Sleeping pills") > -1) bits.push("The pills " + (a.pill_often === "Every night" ? "every night " : "") + "knock you out. They don't fix why you wake up." + (a.pill_stop === "Yes" ? " You told me you'd like to stop. That's a decision for you and your doctor, and the evening makes it easier." : ""));
-    if (a.sex !== "Man" && tried.indexOf("Hormones (HRT)") > -1) bits.push("You're on hormones and you still wake up. That tells me the 3AM thing has another piece on top.");
     tr = bits.join(" ") + " None of that is your fault. They all work on falling asleep. Your problem is staying asleep.";
   }
 
@@ -751,10 +668,6 @@ function renderResult(){
   var will = a.willing === "Yes, let's do it" ? "And you're willing to try 5 small evening changes for 14 nights. That's all I ask." :
              a.willing === "Maybe" ? "You said maybe on the 14 nights. Fair. Read what I'd do first, then decide." :
              "You said you've tried everything. Not this. Nobody told you to look at the evening.";
-  var tm = a.time === "10 minutes" ? "Ten minutes an evening is enough for the first nights." :
-           a.time === "20 minutes" ? "Twenty minutes an evening is plenty." :
-           a.time === "Half an hour" ? "Half an hour an evening is more than it needs." :
-           "Whatever it takes. Good. It takes less than you think.";
 
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
   var h = "";
@@ -767,7 +680,7 @@ function renderResult(){
        '<div class="lbl"><span>Early dinner</span><span>OK</span><span>Late</span></div></div>' +
        '<p>' + esc(din) + '</p>' +
        '<p>' + esc(dr.join(" ")) + '</p>' +
-       (room || last ? '<p>' + esc((room + " " + last).trim()) + '</p>' : '') + '</div>';
+       '<p>' + esc(last) + '</p>' + '</div>';
   // Card 3
   h += '<div class="card" data-card="3"><h2>What you already have</h2>' +
        '<p class="small">' + esc(tr) + '</p>' +
@@ -775,14 +688,12 @@ function renderResult(){
   // Card 4
   h += '<div class="card" data-card="4"><h2>Your 14 nights, if you want them</h2>' +
        '<ul class="data">' +
-       '<li><span>You</span><span>' + esc(a.sex || "—") + '</span></li>' +
-       '<li><span>Wake-up time</span><span>' + esc(a.wake || "—") + '</span></li>' +
+              '<li><span>Wake-up time</span><span>' + esc(a.wake || "—") + '</span></li>' +
        '<li><span>What happens</span><span>' + esc(a.happens || "—") + '</span></li>' +
        '<li><span>Tried</span><span>' + esc(tried.length ? tried.join(", ") : "Nothing yet") + '</span></li>' +
        '<li><span>Dinner</span><span>' + esc(a.dinner || "—") + '</span></li>' +
-       '<li><span>Goal</span><span>' + esc(future.length ? future.join(", ") : goal.join(", ") || "—") + '</span></li>' +
-       '</ul>' +
-       '<p>' + esc(why) + ' ' + esc(will) + ' ' + esc(tm) + '</p>' +
+              '</ul>' +
+       '<p>' + esc(why) + ' ' + esc(will) + '</p>' +
        '<ul class="plan">' +
        '<li><b>Nights 1–3</b><span>Watch and fuel. Dinner later or bigger, one thing from the kitchen after.</span></li>' +
        '<li><b>Nights 4–7</b><span>The evening drink and the cool room.</span></li>' +
@@ -791,13 +702,17 @@ function renderResult(){
        '</ul></div>';
   document.getElementById("r-body").innerHTML = h;
   show("s-result");
-  track("result_view", {profile: prof, sex: a.sex});
+  track("result_view", {profile: prof});
   for (var c=1;c<=4;c++) track("result_card_view", {card: c});
 }
 
+function fillMore(){
+  try{ var w=(state.answers||{}).willing; var el=document.getElementById("more-time");
+    if(el) el.textContent = w === "Maybe" ? "You said maybe." : w === "I've tried everything" ? "You said you've tried everything. Not this." : "You said yes, let's do it."; }catch(e){}
+}
 function ctaClick(){
-  track("cta_click", {profile: profileOf(state.answers || {}), price: 27});
-  track("checkout_view", {price: 27});
+  track("cta_click", {profile: profileOf(state.answers || {}), price: 17});
+  track("checkout_view", {price: 17});
   chrome(false, false);
   show("s-pay");
   window.scrollTo(0,0);
@@ -817,7 +732,7 @@ function restart(){
 
 // ===== BOOT =====
 (function(){
-  track("page_view", {v:"v6"});
+  track("page_view", {v:"v8"});
   if (state.done && state.i < RESULT_IDX){ state.i = RESULT_IDX; }   // survives a refresh
   if (FLOW[state.i].type === "wait") state.i = nextIdx(state.i);
   render();
