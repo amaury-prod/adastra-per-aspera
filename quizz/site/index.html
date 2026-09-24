@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Why you wake up at 3AM. And what I do about it. — Marcus Booker</title>
-<meta name="description" content="For men over 50 who lie there wide awake. Not a doctor. Just a man who used to see 3:07 every night. Marcus Booker's 14-night evening routine.">
+<meta name="description" content="For anyone over 50 who lies there wide awake. Not a doctor. Just a man who used to see 3:07 every night. Marcus Booker's 14-night evening routine.">
 <!-- META_PIXEL -->
 <style>
   :root{
@@ -61,6 +61,19 @@
   .price{text-align:center;margin:18px 0 6px}
   .price .was{font-size:26px;color:#8a92a6;text-decoration:line-through;margin-right:10px;vertical-align:middle}
   .price .now{font-size:46px;font-weight:800;color:var(--night);line-height:1}
+  /* price block: one plan card, pre-selected, "recommended" header, price per night */
+  .pick{margin:20px 0 12px;border:3px solid var(--green);border-radius:18px;overflow:hidden;background:var(--card)}
+  .pick .rec{background:var(--green);color:#fff;text-align:center;font-weight:800;font-size:18px;padding:8px 0}
+  .pick .row{display:flex;align-items:center;gap:10px;padding:16px 12px}
+  .pick .tick{flex:0 0 32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;box-shadow:0 0 0 3px var(--greenbg)}
+  .pick .pl{flex:1;min-width:0}
+  .pick .pl b{display:block;font-size:21px;white-space:nowrap;line-height:1.2;color:var(--night)}
+  .pick .pl s{color:#d64545;font-size:17px;margin-right:6px}
+  .pick .pl .pr{font-size:17px;color:var(--muted)}
+  .pick .pill{display:inline-block;margin-top:6px;background:#e5484d;color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:3px 12px}
+  .pick .pd{flex:0 0 auto;text-align:center;border-left:1px solid var(--line);padding-left:12px}
+  .pick .pd b{display:block;font-size:28px;font-weight:800;color:var(--night);line-height:1}
+  .pick .pd span{font-size:15px;color:var(--muted)}
   .faq details{border-top:1px solid var(--line);padding:12px 0}
   .faq summary{font-weight:700;cursor:pointer;color:var(--night);font-size:19px;list-style:none;display:flex;justify-content:space-between}
   .faq summary::after{content:"+";color:var(--warm2);font-size:26px;line-height:1}
@@ -115,10 +128,10 @@
     <div>
       <p class="name">Marcus Booker</p>
       <h1>Why you wake up at 3AM. And what I do about it.</h1>
-      <p class="sub">For men over 50 who lie there wide awake. Not a doctor. Just a man who used to see 3:07 every night.</p>
+      <p class="sub">For anyone over 50 who lies there wide awake. Not a doctor. Just a man who used to see 3:07 every night.</p>
     </div>
   </div>
-  <a class="btn btn-warm" style="margin-top:8px" href="#offer" onclick="ctaClick('top')">Show me the 14 nights — $17</a>
+  <a class="btn btn-warm" style="margin-top:8px" href="#offer" onclick="ctaClick('top')">Show me the 14 nights — $27</a>
 </section>
 
 <!-- 2. SOUND FAMILIAR -->
@@ -237,12 +250,12 @@
 <section id="s-offer" data-section="offer">
   <h2 style="margin-top:14px">One more thing.</h2>
   <p class="lead">Don't do it from memory. I wrote the whole thing down, night by night. Night 1 is tonight. You read one page, you do one thing, you go to bed.</p>
-  <p class="lead">It's <b>$17</b>, once. Less than a bottle of the pills that didn't work. It also keeps this page running, so thank you if you do.</p>
+  <p class="lead">It's <b>$27</b>, once. Less than a bottle of the pills that didn't work. It also keeps this page running, so thank you if you do.</p>
 
   <div class="card" id="offer">
     <span class="tag">The 3AM Reset</span>
-    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for Men Over 50</h2>
-    <p><b>Sleep through the night again in 14 nights, or you pay nothing.</b> Written for men over 50. Nothing to swallow.</p>
+    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for Over 50s</h2>
+    <p><b>Sleep through the night again in 14 nights, or you pay nothing.</b> Written for over 50s. Nothing to swallow.</p>
     <h3>What you get</h3>
     <ul class="stack">
       <li><span><b>The 14-Night Sleep Routine</b>The guide. Night by night, what to eat, drink and do in the evening. Reads easy on your phone.</span></li>
@@ -251,9 +264,16 @@
       <li><span><b>7 Evening Tonics</b>Seven evening drinks. Garlic, hibiscus, chamomile, ginger… one page each.</span></li>
       <li><span><b>The 14-Night Tracker</b>One page. Tick off each night and watch the pattern change.</span></li>
     </ul>
-    <div class="price"><span class="was">$47</span> <span class="now">$17</span></div>
-    <p class="center small" style="margin-bottom:16px">One-time. No subscription. Yours to keep.</p>
-    <a class="btn btn-warm btn-cta" id="cta" href="#s-pay" onclick="return buyClick()">Start Night 1 tonight — $17</a>
+    <div class="pick">
+      <div class="rec">Recommended for you</div>
+      <div class="row">
+        <span class="tick">✓</span>
+        <div class="pl"><b>14 Nights</b><span class="pr"><s>$47</s>$27</span><br><span class="pill">43% off</span></div>
+        <div class="pd"><b>$1.93</b><span>per night</span></div>
+      </div>
+    </div>
+    <p class="center small" style="margin-bottom:16px">Yours to keep. 30-day money back.</p>
+    <a class="btn btn-warm btn-cta" id="cta" href="#s-pay" onclick="return buyClick()">Start Night 1 tonight — $27</a>
     <p class="center small" style="margin-top:12px">On your phone in one minute. 30-day money back, no questions.</p>
 
     <div class="guarantee">
@@ -271,7 +291,7 @@
     <div class="faq">
       <details><summary>Is this a physical book?</summary><p>No. It's a digital guide you read on your phone or computer, ready the minute you order. The cards are made to print at home if you like paper on the nightstand.</p></details>
       <details><summary>Do I need to buy anything?</summary><p>Nothing fancy. The tonics use things like garlic, ginger, chamomile and hibiscus. Most of it is already in your kitchen or at any grocery store.</p></details>
-      <details><summary>What if it doesn't work for me?</summary><p>Then you email us within 30 days and you get your money back. No questions, no hoops. Marcus would rather you keep your $17 than keep something you don't use.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>Then you email us within 30 days and you get your money back. No questions, no hoops. Marcus would rather you keep your $27 than keep something you don't use.</p></details>
     </div>
 
     <p class="small" style="margin-top:20px">This guide shares Marcus's personal evening routine and is for general information only. It is not medical advice and does not diagnose or treat any condition. Talk to your doctor before changing any supplement if you take medication.</p>
@@ -280,7 +300,7 @@
   <!-- PAYMENT (replaces the offer card) -->
   <div id="s-pay" hidden>
     <h1 class="center">Your 14 nights</h1>
-    <p class="sub center">$17, one time. The download lands in your email right after. 30-day money back.</p>
+    <p class="sub center">$27, one time. The download lands in your email right after. 30-day money back.</p>
     <div data-whop-checkout-plan-id="plan_m7PMgQAy7PS52"
          data-whop-checkout-theme="light"
          data-whop-checkout-theme-accent-color="#e8913a"
@@ -302,7 +322,7 @@
 
 <!-- FLOATING CTA (mobile) -->
 <div class="float" id="float">
-  <a class="btn btn-warm" href="#offer" onclick="ctaClick('floating')">Start Night 1 — $17</a>
+  <a class="btn btn-warm" href="#offer" onclick="ctaClick('floating')">Start Night 1 — $27</a>
 </div>
 
 <script>
@@ -330,10 +350,10 @@ function track(event, data){
 window.addEventListener("pagehide", flushTrack); document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="hidden") flushTrack(); });
 
 // ===== CTA =====
-function ctaClick(where){ track("cta_click", {price:17, where:where}); }
+function ctaClick(where){ track("cta_click", {price:27, where:where}); }
 function buyClick(){
-  track("cta_click", {price:17, where:"offer"});
-  track("checkout_view", {price:17});
+  track("cta_click", {price:27, where:"offer"});
+  track("checkout_view", {price:27});
   document.getElementById("offer").hidden = true;
   document.getElementById("s-pay").hidden = false;
   document.getElementById("s-offer").scrollIntoView();

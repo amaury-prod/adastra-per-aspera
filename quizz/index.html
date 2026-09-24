@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What your night is trying to say — from Marcus Booker</title>
-<meta name="description" content="A few questions from Marcus Booker. 5 minutes, no email, nothing to buy. Find out what your 3AM wake-up is trying to say.">
+<meta name="description" content="A few questions from Marcus Booker. 5 minutes, no email. Find out what your 3AM wake-up is trying to say.">
 <!-- META_PIXEL -->
 <style>
   :root{
@@ -16,15 +16,17 @@
   html,body{background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
     font-size:18px;line-height:1.5;-webkit-text-size-adjust:100%}
-  .wrap{max-width:520px;margin:0 auto;padding:0 18px 48px;min-height:100vh}
+  .wrap{max-width:520px;margin:0 auto;padding:0 18px 110px;min-height:100vh}
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+    background:var(--bg);box-shadow:0 -6px 18px rgba(19,33,61,.10);animation:up .2s ease}
+  .sticky[hidden]{display:none}
+  .sticky button{max-width:484px;margin:0 auto}
+  @keyframes up{from{transform:translateY(100%)}to{transform:none}}
   .top{position:relative;height:60px;display:flex;align-items:center;justify-content:center}
   .top .mb{width:40px;height:40px;border-radius:50%;border:2px solid var(--warm);object-fit:cover;display:block}
   .back{position:absolute;left:-8px;top:8px;height:44px;padding:0 10px;background:none;border:0;color:var(--night);
     font:inherit;font-size:18px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .back[hidden]{display:none}
-  .count{position:absolute;right:0;top:16px;font-size:18px;color:var(--night)}
-  .count b{font-size:22px;font-weight:800}
-  .count[hidden]{display:none}
   .bar{height:5px;background:#eadfcc;border-radius:3px;overflow:hidden;margin:0 -18px 22px}
   .bar i{display:block;height:100%;background:var(--warm);width:0;transition:width .3s}
   .bar[hidden]{display:none}
@@ -61,7 +63,19 @@
   .soft{color:var(--muted);font-style:italic;margin:0 0 22px}
   .quote{font-style:italic}
   .story p{font-size:19px}
-  .story .sig{color:var(--muted);font-size:16px;font-style:italic;margin:4px 0 20px}
+  .story .head{display:flex;gap:14px;align-items:center;margin:4px 0 16px}
+  .story .head img{flex:0 0 72px;width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--warm)}
+  .story .head h2{margin:0 0 2px;font-size:23px}
+  .story .sig{color:var(--muted);font-size:16px;font-style:italic;margin:0}
+  /* first question : man / woman */
+  .sex{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 18px}
+  .sex button{display:flex;flex-direction:column;align-items:center;padding:18px 0 0;border:2px solid var(--line);border-radius:16px;
+    background:var(--card);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;font:inherit;-webkit-tap-highlight-color:transparent}
+  .sex svg{width:70%;height:auto;display:block}
+  .sex span{display:block;width:100%;padding:12px 0;background:var(--night);color:#fff;font-size:19px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .sex button:active,.sex button.sel{border-color:var(--warm)}
+  .sex button.sel span{background:var(--warm)}
+  .yn svg{width:46%;margin:6px 0 16px}
   .card{background:var(--card);border-radius:16px;padding:20px 18px;margin:0 0 16px;box-shadow:var(--shadow)}
   .card h2{font-size:22px;margin-bottom:10px}
   .card h3{margin-top:14px}
@@ -84,6 +98,41 @@
   .price{text-align:center;margin:18px 0 6px}
   .price .was{font-size:26px;color:#8a92a6;text-decoration:line-through;margin-right:10px;vertical-align:middle}
   .price .now{font-size:46px;font-weight:800;color:var(--night);line-height:1}
+  /* price block: one plan card, pre-selected, "recommended" header, price per night */
+  .pick{margin:20px -10px 12px;border:3px solid var(--green);border-radius:18px;overflow:hidden;background:var(--card)}
+  .pick:first-child{margin-top:0}
+  .reviews{margin:18px 0 6px}
+  .reviews[hidden]{display:none}
+  .rv{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 10px;background:var(--card)}
+  .rv .st{color:#f5a524;font-size:17px;letter-spacing:2px}
+  .rv .st i{font-style:normal;color:#e3dccf}
+  .rv p{margin:4px 0 6px;font-size:17px}
+  .rv b{font-size:15px;color:var(--muted);font-weight:600}
+  .alert{display:flex;gap:10px;align-items:flex-start;background:#fdecec;border:1px solid #f3c2c0;border-radius:14px;padding:12px 14px;margin:4px 0 16px;color:#b42318;font-size:17px;font-weight:600;line-height:1.4}
+  .alert svg{flex:0 0 22px;width:22px;height:22px;margin-top:1px;fill:none;stroke:#b42318;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .promo{display:flex;align-items:center;gap:10px;margin:0 12px 14px;padding:10px 12px;border:2px solid #f3c2c0;border-radius:14px;background:#fff7f7}
+  .promo[hidden]{display:none}
+  .promo svg{flex:0 0 26px;width:26px;height:26px;fill:#f28b8b;stroke:#fff;stroke-width:1.5}
+  .promo .pc{flex:1;min-width:0;line-height:1.25}
+  .promo .pc b{display:block;font-size:16px;color:var(--night)}
+  .promo .pc span{font-size:14px;color:var(--muted)}
+  .promo .tm{display:flex;align-items:flex-start;gap:4px;text-align:center}
+  .promo .tm b{display:block;font-size:24px;font-weight:800;color:#e5484d;line-height:1.1}
+  .promo .tm span{font-size:11px;color:var(--muted)}
+  .promo .tm i{font-style:normal;font-size:22px;font-weight:800;color:#e5484d}
+  .pick #checkout-full{border-top:1px solid var(--line);padding:6px 4px 4px}
+  .pick #checkout{border-top:1px solid var(--line);padding:6px 4px 4px}
+  .pick .rec{background:var(--green);color:#fff;text-align:center;font-weight:800;font-size:18px;padding:8px 0}
+  .pick .row{display:flex;align-items:center;gap:10px;padding:16px 12px}
+  .pick .tick{flex:0 0 32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;box-shadow:0 0 0 3px var(--greenbg)}
+  .pick .pl{flex:1;min-width:0}
+  .pick .pl b{display:block;font-size:21px;white-space:nowrap;line-height:1.2;color:var(--night)}
+  .pick .pl s{color:#d64545;font-size:17px;margin-right:6px}
+  .pick .pl .pr{font-size:17px;color:var(--muted)}
+  .pick .pill{display:inline-block;margin-top:6px;background:#e5484d;color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:3px 12px}
+  .pick .pd{flex:0 0 auto;text-align:center;border-left:1px solid var(--line);padding-left:12px}
+  .pick .pd b{display:block;font-size:28px;font-weight:800;color:var(--night);line-height:1}
+  .pick .pd span{font-size:15px;color:var(--muted)}
   .faq details{border-top:1px solid var(--line);padding:12px 0}
   .faq summary{font-weight:700;cursor:pointer;color:var(--night);font-size:19px;list-style:none;display:flex;justify-content:space-between}
   .faq summary::after{content:"+";color:var(--warm2);font-size:26px;line-height:1}
@@ -133,19 +182,8 @@
 <div class="top">
   <button class="back" id="chev" aria-label="Back" onclick="goBack()" hidden>&#8249; Back</button>
   <img class="mb" src="marcus_face.jpg" alt="Marcus Booker" width="40" height="40">
-  <span class="count" id="q-count" hidden></span>
 </div>
 <div class="bar" id="q-barwrap" hidden><i id="q-bar"></i></div>
-
-<!-- HOME : a private message -->
-<section class="screen" id="s-home">
-  <img class="photo home" src="marcus.jpg" alt="Marcus Booker" width="480" height="480">
-  <h1 class="center" style="margin-top:6px">Hey, Marcus here.</h1>
-  <p class="sub">If you're a man over 50 who wakes up at 3AM and can't get back to sleep, this is for you.</p>
-  <p class="sub">It takes 5 minutes. No email, nothing to buy. Just a few questions and I'll tell you what your night is trying to say.</p>
-  <button class="btn btn-warm" style="margin-top:8px" onclick="startQuiz()">Let's go</button>
-  <p class="center small" style="margin-top:16px">60-something, not a doctor. Just a man who used to see 3:07 every night.</p>
-</section>
 
 <!-- QUIZ (questions, insights, stories, tips) built by JS -->
 <section class="screen" id="s-quiz">
@@ -174,59 +212,70 @@
 <!-- THE 5 EVENING MOVES -->
 <section class="screen" id="s-moves">
   <h2>Here's what I'd do in your shoes</h2>
-  <p class="small" style="margin:-4px 0 12px">The five moves. Then, if you want it, the night-by-night version at the bottom.</p>
-  <p>Five small things between dinner and lights out. Nothing to swallow, nothing to buy at a pharmacy.</p>
+  <p>Five small things between dinner and bed. Nothing to swallow.</p>
   <ol class="steps">
-    <li><div><b>Eat dinner later, or make it bigger.</b><span>A full tank at bedtime means no wake-up signal at 3.</span></div></li>
-    <li><div><b>Swap the evening drink.</b><span>Hot water, garlic, lemon, honey. Not wine, not coffee, not the fancy tea.</span></div></li>
-    <li><div><b>One thing from the kitchen after dinner.</b><span>A spoon of honey or a small banana. Fuel for the small hours.</span></div></li>
-    <li><div><b>Cool the room before you get in it.</b><span>Crack a window at nine. A cool room keeps the hot wake-up away.</span></div></li>
-    <li><div><b>Dim the house an hour before bed.</b><span>Lamps, not ceiling lights. No phone in bed. Bright light tells your body it's noon.</span></div></li>
+    <li><div><b>Eat dinner later, or bigger.</b><span>A full tank means no 3AM signal.</span></div></li>
+    <li><div><b>Swap the evening drink.</b><span>Hot water, garlic, lemon, honey. Not wine.</span></div></li>
+    <li><div><b>A bite from the kitchen after dinner.</b><span>Honey or a small banana. Fuel for the night.</span></div></li>
+    <li><div><b>Cool the room.</b><span>Crack a window at nine.</span></div></li>
+    <li><div><b>Dim the house an hour before bed.</b><span>Lamps, not ceiling lights. No phone in bed.</span></div></li>
   </ol>
-  <p class="lead">Start with the one that feels easiest. Add one more each night.</p>
+  <p class="lead">Start with the easiest. Add one each night.</p>
   <button class="btn btn-warm" onclick="advance()">Got it</button>
 </section>
 
 <!-- ONE MORE THING + OFFER -->
 <section class="screen" id="s-more">
-  <h2 style="margin-top:14px">One more thing.</h2>
-  <p class="lead"><span id="more-time">You said yes, let's do it.</span> Good. Then don't do it from memory.</p>
-  <p class="lead">I wrote the whole thing down, night by night. Night 1 is tonight. You read one page, you do one thing, you go to bed.</p>
-  <p class="lead">It's <b>$17</b>, once. Less than a bottle of the pills that didn't work. It also keeps this page running, so thank you if you do.</p>
+  <div id="more-plan" style="margin-top:14px"></div>
 
   <div class="card" id="offer">
-    <span class="tag">The 3AM Reset</span>
-    <h2 style="margin-top:12px">Marcus Booker's 14-Night Sleep Routine for Men Over 50</h2>
-    <p><b>Sleep through the night again in 14 nights, or you pay nothing.</b> Written for men over 50. Nothing to swallow.</p>
-    <h3>What you get</h3>
-    <ul class="stack">
-      <li><span><b>The 14-Night Sleep Routine</b>The guide. Night by night, what to eat, drink and do in the evening. Reads easy on your phone.</span></li>
-      <li><span><b>Marcus's Bedside Card</b>One page to print. The evening routine in 5 gestures.</span></li>
-      <li><span><b>The 3AM Emergency Card</b>One page. What to do when you're awake at 3 and don't want to lie there.</span></li>
-      <li><span><b>7 Evening Tonics</b>Seven evening drinks. Garlic, hibiscus, chamomile, ginger… one page each.</span></li>
-      <li><span><b>The 14-Night Tracker</b>One page. Tick off each night and watch the pattern change.</span></li>
-    </ul>
-    <div class="price"><span class="was">$47</span> <span class="now">$17</span></div>
-    <p class="center small" style="margin-bottom:16px">One-time. No subscription. Yours to keep.</p>
-    <a class="btn btn-warm btn-cta" id="cta" href="#" onclick="return ctaClick()">Start Night 1 tonight — $17</a>
-    <p class="center small" style="margin-top:12px">On your phone in one minute. 30-day money back, no questions.</p>
+    <div class="pick">
+      <div class="rec">Recommended for you</div>
+      <div class="row">
+        <span class="tick">✓</span>
+        <div class="pl"><b>14 Nights</b><span class="pr" id="p-price"><s>$47</s>$27</span><br><span class="pill" id="p-pill">43% off</span></div>
+        <div class="pd"><b id="p-night">$1.93</b><span>per night</span></div>
+      </div>
+      <!-- 15-minute discount. It is real: when it ends, the $47 checkout below replaces the $27 one.
+           Shown only once checkout-full has a Whop plan id (see setupPromo). -->
+      <div class="promo" id="promo" hidden>
+        <svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+        <div class="pc"><b>43% off applied</b><span>Back to $47 in</span></div>
+        <div class="tm"><div><b id="tm-m">15</b><span>minutes</span></div><i>:</i><div><b id="tm-s">00</b><span>seconds</span></div></div>
+      </div>
+      <!-- Whop checkout inside the green frame, right under the price: no button in between -->
+      <div id="checkout" data-whop-checkout-plan-id="plan_m7PMgQAy7PS52"
+           data-whop-checkout-theme="light"
+           data-whop-checkout-theme-accent-color="#e8913a"
+           data-whop-checkout-return-url="https://adastra-per-aspera.org/quizz/thanks/"
+           style="height: fit-content; overflow: hidden;"></div>
+      <!-- $47 checkout, used after the 15 minutes. TO ENABLE: add data-whop-checkout-plan-id="plan_xxx" (the $47 Whop plan). -->
+      <div id="checkout-full" hidden
+           data-whop-checkout-theme="light"
+           data-whop-checkout-theme-accent-color="#e8913a"
+           data-whop-checkout-return-url="https://adastra-per-aspera.org/quizz/thanks/"
+           style="height: fit-content; overflow: hidden;"></div>
+    </div>
+    <p class="center small">Yours to keep. On your phone in one minute.</p>
+
+    <!-- Customer reviews, filled from REVIEWS in the script. Hidden while REVIEWS is empty. -->
+    <div class="reviews" id="reviews" hidden></div>
 
     <div class="guarantee">
       <div class="badge">30<br>DAYS</div>
-      <p style="margin:0"><b>30-day guarantee.</b> Try the routine for a full month. If it's not for you, email us and you get every dollar back. No questions.</p>
+      <p style="margin:0"><b>30-day guarantee.</b> Not for you? Email us, get every dollar back. No questions.</p>
     </div>
 
     <h3>A word from Marcus</h3>
-    <p class="quote">I'm 60-something and I sleep like a baby. It wasn't always that way.<br>
-    I spent years waking up at 3 and staring at the ceiling.<br>
-    God gave us everything we need, and most of it is already in your kitchen.<br>
-    This is what I do every evening. Try it for 14 nights.</p>
+    <p class="quote">I'm 60-something and I sleep like a baby. I didn't always.<br>
+    God gave us everything we need. Most of it is in your kitchen.<br>
+    Try my evenings for 14 nights.</p>
 
     <h3>Questions</h3>
     <div class="faq">
-      <details><summary>Is this a physical book?</summary><p>No. It's a digital guide you read on your phone or computer, ready the minute you order. The cards are made to print at home if you like paper on the nightstand.</p></details>
-      <details><summary>Do I need to buy anything?</summary><p>Nothing fancy. The tonics use things like garlic, ginger, chamomile and hibiscus. Most of it is already in your kitchen or at any grocery store.</p></details>
-      <details><summary>What if it doesn't work for me?</summary><p>Then you email us within 30 days and you get your money back. No questions, no hoops. Marcus would rather you keep your $17 than keep something you don't use.</p></details>
+      <details><summary>Is this a physical book?</summary><p>No. A digital guide for your phone or computer, ready the minute you order. The cards print at home.</p></details>
+      <details><summary>Do I need to buy anything?</summary><p>Nothing fancy. Garlic, ginger, chamomile, hibiscus. Most of it is already in your kitchen.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>Email us within 30 days. Every dollar back, no questions.</p></details>
     </div>
 
     <p class="small" style="margin-top:20px">This guide shares Marcus's personal evening routine and is for general information only. It is not medical advice and does not diagnose or treat any condition. Talk to your doctor before changing any supplement if you take medication.</p>
@@ -236,18 +285,6 @@
 </section>
 
 <!-- WARM END (after "No thanks") -->
-<section class="screen" id="s-pay">
-  <h1 class="center">Your 14 nights</h1>
-  <p class="sub center">$17, one time. The download lands in your email right after. 30-day money back.</p>
-  <div data-whop-checkout-plan-id="plan_m7PMgQAy7PS52"
-       data-whop-checkout-theme="light"
-       data-whop-checkout-theme-accent-color="#e8913a"
-       data-whop-checkout-return-url="https://adastra-per-aspera.org/quizz/thanks/"
-       style="height: fit-content; overflow: hidden; margin: 12px 0 20px;"></div>
-  <p class="center small">30-day guarantee. Email us and you get every dollar back.</p>
-  <p class="center" style="margin-top:14px"><button class="link" onclick="show('s-more')">‹ Back</button></p>
-</section>
-
 <section class="screen" id="s-end">
   <img class="photo home" src="marcus.jpg" alt="Marcus Booker" width="480" height="480">
   <h1 class="center">Sleep well.</h1>
@@ -258,6 +295,9 @@
 </section>
 
 </div>
+
+<!-- Sticky copy of the screen's main button, shown only while the real one is off screen -->
+<div class="sticky" id="sticky" hidden><button type="button"></button></div>
 
 <script>
 // ===== CONFIG =====
@@ -293,56 +333,52 @@ var ICON = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 
 function has(a, k, v){ return (a[k] || []).indexOf(v) > -1; }
 function pills(a){ return has(a, "tried", "Sleeping pills"); }
 
-// Marcus's stories, first person. One title, one photo, 150-200 words.
+// Marcus's stories, first person. One title, small photo, ~70 words: the button must show without scrolling.
 var STORIES = {
   grandmother: {t:"What my grandmother knew", p:[
-    "My grandmother never had a sleep problem. Not one I ever heard about. Every evening, same thing. She'd stand at the stove in that little kitchen. A pot of water going. Garlic on the board. A lemon. Honey from a jar with no label.",
-    "She'd make her hot drink and sit down. Nobody rushed her. She'd sip it slow while the house went quiet. Then she'd go to bed. And she'd sleep till the rooster.",
-    "I asked her once what was in it. She laughed. “Nothing you can't grow, baby.” She used to say God gave us everything we need. She wasn't preaching. She meant the kitchen.",
-    "I forgot all of that for forty years. I bought the teas in the fancy boxes. The gummies. The pills.",
-    "Then one night I stood at my own stove. Garlic, lemon, honey, hot water. I sat down and sipped it slow. And I thought about her. That was the first night in a long time I slept past three."]},
+    "My grandmother slept like a rock. Every evening, same thing. Hot water, garlic, a lemon, honey. She'd sip it slow while the house went quiet.",
+    "“God gave us everything we need,” she'd say. She meant the kitchen.",
+    "I forgot that for forty years. Teas, gummies, pills. Then one night I made her drink. First night in years I slept past three."]},
   dinner: {t:"The 6PM dinner mistake", p:[
-    "For years I ate dinner at six. My wife liked it early. So did I. Then TV, then bed around eleven. And every night, 3AM. Eyes open. Wide awake. I never once connected the two.",
-    "Here's the math I finally did. Dinner at six. Bed at eleven. That's five hours before I even lay down. By three, it had been nine hours. Nine hours on an empty tank.",
-    "My body wasn't broken. It was hungry. And a hungry body doesn't stay quiet. It sends a wake-up signal. That signal is what popped my eyes open.",
-    "One night we ate late. Company came by. We didn't sit down till almost eight. Real food too. Chicken, greens, sweet potato. I went to bed at eleven like always. And I woke up at six-thirty. Straight through.",
-    "I thought it was luck. So I tried it again the next night. And the next. It wasn't luck. It was dinner. Nobody had ever told me to look there."]}
+    "For years I ate dinner at six. Bed at eleven. And every night, 3AM. Wide awake.",
+    "Then I did the math. By 3AM, nine hours on an empty tank. My body wasn't broken. It was hungry, and it woke me up.",
+    "One night we ate late, almost eight. I slept till six-thirty. The next night too. It wasn't luck. It was dinner."]}
 };
 
 // Try this tonight. Complete, nothing held back.
 var TIPS = {
   drink: {t:"Marcus's evening drink", line:"The evening drink: hot water, garlic, lemon, honey",
-    intro:"This is the drink my grandmother made. Here's the whole recipe. Nothing left out.",
-    steps:["Heat a mug of water. Hot, not boiling.",
-           "Crush one clove of garlic. Let it sit two minutes.",
-           "Drop in the garlic and the juice of half a lemon.",
-           "Stir in a spoon of honey. Sip it slow, an hour before bed."],
-    p:["Tastes better than it sounds. The honey does the heavy lifting.",
-       "Make it a small ritual. Same mug, same chair, same time. Your body learns the signal.",
-       "If you take medication, run it by your doctor first. Then enjoy it."]},
+    intro:"My grandmother's drink. The whole recipe.",
+    steps:["A mug of hot water, not boiling.",
+           "One crushed garlic clove, half a lemon.",
+           "A spoon of honey. Sip slow, an hour before bed."],
+    p:["Take medication? Check with your doctor first."]},
   notebook: {t:"The brain dump", line:"The brain dump: three lines in the notebook before lights out",
-    intro:"Put a notebook and a pen by the bed. Tonight, before lights out, open it.",
-    p:["Write the three things turning in your head. The bill. The call you owe. The thing you said to your daughter. Just three. One line each. Then close the notebook.",
-       "Here's why it works. Your brain hands you that list at 3AM because it's scared you'll forget. Now it's written. Your brain can let it go.",
-       "If you wake up anyway, don't reach for the phone. Reach for the notebook. Add the thought. Close it. Lie back down."]},
+    intro:"Notebook and pen by the bed. Before lights out:",
+    steps:["Write the three things turning in your head.",
+           "One line each. Close the notebook."],
+    p:["Your brain wakes you at 3 so you won't forget. Now it's written. It can let go."]},
   awake: {t:"If you still wake up at 3", line:"If you still wake up: no clock, slow breathing, count back from 300",
-    intro:"Some nights you'll wake up anyway. Here's what to do, in order.",
-    steps:["Don't look at the clock. Turn it around before bed if you have to. Knowing it's 3:07 only makes it worse.",
-           "Breathe. In for four, out for six. Slow out-breath. Do it ten times.",
-           "Count backwards from 300 by 3. 300, 297, 294. It's boring on purpose."],
-    p:["Your brain can't worry and count at the same time. Most nights you won't reach 200. If you do, keep going.",
-       "Don't get up. Don't turn on the light. Just breathe and count."]}
+    intro:"Some nights you'll wake up anyway. Do this:",
+    steps:["Don't look at the clock.",
+           "Breathe in for 4, out for 6. Ten times.",
+           "Count back from 300 by 3. Boring on purpose."],
+    p:["Your brain can't worry and count at once. Stay in bed, lights off."]}
 };
 
 var FLOW = [
-  {id:"home", type:"home"},
-
+  {id:"sex", type:"sex", step:1, title:"Are you a man or a woman?",
+   why:"Hey, Marcus here. Let's figure out your 3AM."},
+  {id:"fallback", type:"yn", step:1, title:"Once you're awake at 3, is it hard to fall back asleep?",
+   why:"Just yes or no."},
   {id:"howlong", type:"q", step:1, title:"How long has the 3AM thing been going on?",
    why:"A few weeks and a few years are different animals.",
    opts:["A few weeks","A few months","1–2 years","Longer than I want to admit"]},
+  {id:"tired", type:"yn", step:1, title:"Do you wake up tired, even after a full night in bed?",
+   why:"Be honest. Nobody's grading this."},
   {id:"i_mech1", type:"insight", step:1, name:"mechanism_1", btn:"Makes sense",
    build:function(a){ return {pre:"Here's the piece nobody told you.",
-     t:"The 3AM Dip.", lead:"Your body runs low on fuel in the small hours. It sends a wake-up signal to make up for it. That signal is what pops your eyes open at 3. And you can't fix it at 11PM. By then dinner is done, the screen light already hit your eyes, the house is already too warm. That's why the tea alone didn't work."}; }},
+     t:"The 3AM Dip.", lead:"Your body runs low on fuel in the small hours. It sends a wake-up signal. That's what opens your eyes at 3. You can't fix it at 11PM. You fix it in the evening."}; }},
   {id:"reason", type:"q", step:1, title:"What's the main reason you want this fixed?",
    why:"This shapes what I'd tell you at the end.",
    opts:["Be a normal human during the day","Stop worrying about my memory","My health long term","Stop being cranky with the people I love","Stop getting up to pee and never falling back asleep","Get off the pills"]},
@@ -350,6 +386,8 @@ var FLOW = [
   {id:"wake", type:"q", step:2, title:"What time do you usually wake up?",
    why:"The hour tells me which part of the night is off.",
    opts:["Before 1AM","1–2AM","2–4AM","I don't fall asleep at all"]},
+  {id:"missing", type:"yn", step:2, title:"Do you sometimes feel like you're missing out on your own life because you're so tired?",
+   why:"A lot of people feel this. Few say it."},
   {id:"happens", type:"q", step:2, title:"When you wake up, what happens?",
    why:"Hot, racing or wide awake are three different signals.",
    opts:["Hot, sweating","Brain won't settle","Heart racing","I just lie there wide awake"]},
@@ -382,6 +420,8 @@ var FLOW = [
    why:"What's in the glass at 8 shows up at 3. Pick all that apply.",
    opts:["Wine or a drink","Tea","Coffee after 3PM","Water","Nothing much"]},
   {id:"st_grandmother", type:"story", step:2, name:"grandmother"},
+  {id:"permanent", type:"yn", step:2, title:"Are you afraid this could be permanent, and only get worse?",
+   why:"Be honest with yourself."},
   {id:"tip_drink", type:"tip", step:2, name:"drink"},
   {id:"last", type:"q", step:2, title:"What's the last thing you do before lights out?",
    why:"The last ten minutes set the first three hours.",
@@ -395,6 +435,8 @@ var FLOW = [
    when:function(a){ return a.willing === "I've tried everything"; },
    build:function(){ return {t:"That's exactly who this is for.", lead:"If the teas and the pills had worked, you wouldn't be here. This isn't one more thing for bedtime. It's the evening, and nobody told you to look there."}; }},
   {id:"tip_awake", type:"tip", step:3, name:"awake"},
+  {id:"start", type:"yn", step:3, title:"If there was a simple way to finally sleep through the night, would you start tonight?",
+   why:"Just yes or no."},
   {id:"wait", type:"wait"},
   {id:"result", type:"result"},
   {id:"moves", type:"moves"},
@@ -404,7 +446,7 @@ var RESULT_IDX = FLOW.length - 3;
 var WAIT_IDX = FLOW.length - 4;
 
 // ===== STATE =====
-var KEY = "3am_quiz_v8";
+var KEY = "3am_quiz_v9";
 var state = load() || {i:0, answers:{}, done:false};
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
@@ -418,26 +460,95 @@ function show(id){
   for (var i=0;i<s.length;i++) s[i].classList.remove("on");
   document.getElementById(id).classList.add("on");
   window.scrollTo(0,0);
+  setSticky();
 }
 
-function chrome(back, count){
+// Sticky button: mirrors the screen's main button while that one is off screen.
+var stickyT = null, fromSticky = false;
+function setSticky(){
+  var sb = document.querySelector("#sticky button");
+  var scr = document.querySelector(".screen.on");
+  var btns = scr ? scr.querySelectorAll(".btn") : [];
+  stickyT = btns[btns.length - 1] || null;
+  if (stickyT){
+    sb.className = stickyT.className; sb.textContent = stickyT.textContent; sb.disabled = !!stickyT.disabled;
+  }
+  checkSticky();
+}
+function checkSticky(){
+  var bar = document.getElementById("sticky");
+  if (!stickyT){ bar.hidden = true; return; }
+  var r = stickyT.getBoundingClientRect();
+  bar.hidden = r.top < window.innerHeight && r.bottom > 0;
+}
+document.querySelector("#sticky button").onclick = function(){
+  if (!stickyT) return;
+  fromSticky = true; stickyT.click(); fromSticky = false;
+};
+window.addEventListener("scroll", checkSticky, {passive:true});
+window.addEventListener("resize", checkSticky);
+
+// The Whop checkout sits in the offer card: count checkout_view once it scrolls into view.
+var checkoutSeen = false;
+function checkCheckout(){
+  if (checkoutSeen || !document.getElementById("s-more").classList.contains("on")) return;
+  if (document.getElementById("checkout").getBoundingClientRect().top < window.innerHeight * 0.8){
+    checkoutSeen = true;
+    track("checkout_view", {profile: profileOf(state.answers || {}), price: 27});
+  }
+}
+window.addEventListener("scroll", checkCheckout, {passive:true});
+
+// 15-minute discount, counted from the visitor's first offer view (kept across reloads).
+// When it ends the price really goes to $47: the $47 Whop checkout replaces the $27 one.
+// No $47 plan configured on #checkout-full => no timer at all, the page stays at $27.
+var PROMO_KEY = "3am_offer_end", PROMO_MS = 15 * 60 * 1000, promoTimer = null;
+function setupPromo(){
+  var full = document.getElementById("checkout-full");
+  if (!full.getAttribute("data-whop-checkout-plan-id")) return;
+  var end = 0;
+  try{ end = +localStorage.getItem(PROMO_KEY) || 0; }catch(e){}
+  if (!end){ end = Date.now() + PROMO_MS; try{ localStorage.setItem(PROMO_KEY, end); }catch(e){} }
+  document.getElementById("promo").hidden = false;
+  clearInterval(promoTimer); promoTimer = null;
+  (function tickPromo(){
+    var left = end - Date.now();
+    if (left <= 0){ clearInterval(promoTimer); expirePromo(); return; }
+    var s = Math.ceil(left / 1000);
+    document.getElementById("tm-m").textContent = String(Math.floor(s / 60)).padStart(2, "0");
+    document.getElementById("tm-s").textContent = String(s % 60).padStart(2, "0");
+    if (!promoTimer) promoTimer = setInterval(tickPromo, 1000);
+  })();
+}
+function expirePromo(){
+  if (document.getElementById("checkout").hidden) return;
+  document.getElementById("promo").hidden = true;
+  document.getElementById("p-pill").style.display = "none";
+  document.getElementById("p-price").textContent = "$47";
+  document.getElementById("p-night").textContent = "$3.36";
+  document.getElementById("checkout").hidden = true;
+  document.getElementById("checkout-full").hidden = false;
+  track("offer_expired", {price: 47});
+}
+
+function chrome(back, bar){
   document.getElementById("chev").hidden = !back;
-  document.getElementById("q-count").hidden = !count;
-  document.getElementById("q-barwrap").hidden = !count;
+  document.getElementById("q-barwrap").hidden = !bar;
 }
 
 function render(){
   var s = FLOW[state.i];
   track("screen_view", {screen: s.id||s.type});
-  if (s.type === "home"){ chrome(false, false); show("s-home"); return; }
   if (s.type === "wait"){ chrome(false, false); analyze(); return; }
   if (s.type === "result"){ chrome(false, false); renderResult(); return; }
   if (s.type === "moves"){ chrome(true, false); show("s-moves"); return; }
-  if (s.type === "more"){ chrome(true, false); fillMore(); show("s-more"); track("offer_view", {profile: profileOf(state.answers || {})}); return; }
-  chrome(true, true);
+  if (s.type === "more"){ chrome(true, false); fillMore(); show("s-more"); track("offer_view", {profile: profileOf(state.answers || {})}); checkoutSeen = false; checkCheckout(); setupPromo(); return; }
+  chrome(state.i > 0, true);
   progress();
   var box = document.getElementById("q-body"); box.innerHTML = "";
-  if (s.type === "q") renderQ(s, box);
+  if (s.type === "sex") renderSex(s, box);
+  else if (s.type === "yn") renderYN(s, box);
+  else if (s.type === "q") renderQ(s, box);
   else if (s.type === "proof") renderProof(s, box);
   else if (s.type === "insight") renderInsight(s, box);
   else if (s.type === "story") renderStory(s, box);
@@ -445,13 +556,13 @@ function render(){
   show("s-quiz");
 }
 
+// Only the bar, no "3 / 15": a total that grows with the branches discourages.
 function progress(){
   var tot = 0, pos = 0;
-  for (var k=1;k<WAIT_IDX;k++){
+  for (var k=0;k<WAIT_IDX;k++){
     if (!visible(k)) continue;
     tot++; if (k <= state.i) pos++;
   }
-  document.getElementById("q-count").innerHTML = "<b>" + pos + "</b> / " + tot;
   document.getElementById("q-bar").style.width = (pos/tot*100) + "%";
 }
 
@@ -460,12 +571,48 @@ function photo(){ var img = el("img", "photo"); img.src = "marcus.jpg"; img.alt 
 
 function renderProof(s, box){
   box.appendChild(photo());
-  box.appendChild(el("h2", "center", "Made for the men who write to me every week."));
+  box.appendChild(el("h2", "center", "Made for the people who write to me every week."));
   box.appendChild(el("p", "lead center", "Not a doctor. Just what worked for me and for them."));
   var n = el("button", "btn btn-warm", "Okay"); n.type = "button";
   n.onclick = function(){ advance(); };
   box.appendChild(n);
   track("proof_view");
+}
+
+var SIL = {
+  Man: '<svg viewBox="0 0 120 130"><circle cx="60" cy="40" r="24" fill="#c9b79c"/><path d="M36 34c2-16 14-24 26-23 13 1 22 9 22 22-6-6-16-8-24-7-10 1-17 4-24 8z" fill="#13213d"/><path d="M10 130c2-34 22-52 50-52s48 18 50 52z" fill="#13213d"/><g fill="#13213d"><circle cx="52" cy="44" r="2.4"/><circle cx="68" cy="44" r="2.4"/></g><path d="M53 52q7 6 14 0" fill="none" stroke="#13213d" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  Woman: '<svg viewBox="0 0 120 130"><path d="M30 44c0-24 14-36 30-36s30 12 30 36c0 16 4 28 10 34-12 4-28 2-40-4-12 6-28 8-40 4 6-6 10-18 10-34z" fill="#6b4a2f"/><circle cx="60" cy="42" r="22" fill="#c9b79c"/><path d="M38 38c4-14 14-20 24-19 10 1 18 8 20 20-10-2-22-6-30-12-4 6-8 9-14 11z" fill="#6b4a2f"/><path d="M14 130c2-32 20-50 46-50s44 18 46 50z" fill="#e8913a"/><g fill="#13213d"><circle cx="53" cy="46" r="2.3"/><circle cx="67" cy="46" r="2.3"/></g><path d="M54.5 53q5.5 5 11 0" fill="none" stroke="#13213d" stroke-width="2.1" stroke-linecap="round"/></svg>'
+};
+
+// Yes / No question: two big cards, same look as man / woman.
+var YN = {
+  Yes: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#ecf8f1"/><path d="M15 25l6 6 12-13" fill="none" stroke="#2e9e6b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  No:  '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#f3efe7"/><path d="M17 17l14 14M31 17L17 31" fill="none" stroke="#8a8272" stroke-width="4" stroke-linecap="round"/></svg>'
+};
+function renderYN(q, box){
+  box.appendChild(el("h2", "center", q.title));
+  box.appendChild(el("p", "why center", q.why));
+  var g = el("div", "sex yn");
+  ["Yes","No"].forEach(function(o){
+    var b = el("button", state.answers[q.id] === o ? "sel" : "", YN[o] + "<span>" + o + "</span>");
+    b.type = "button";
+    b.onclick = function(){ pick(q, o, b); };
+    g.appendChild(b);
+  });
+  box.appendChild(g);
+}
+
+function renderSex(q, box){
+  box.appendChild(el("h2", "center", q.title));
+  box.appendChild(el("p", "why center", q.why));
+  var g = el("div", "sex");
+  ["Man","Woman"].forEach(function(o){
+    var b = el("button", state.answers[q.id] === o ? "sel" : "", SIL[o] + "<span>" + o + "</span>");
+    b.type = "button";
+    b.onclick = function(){ if (!state.started){ state.started = true; track("quiz_start"); } pick(q, o, b); };
+    g.appendChild(b);
+  });
+  box.appendChild(g);
 }
 
 function renderQ(q, box){
@@ -506,9 +653,7 @@ function renderInsight(s, box){
 function renderStory(s, box){
   var c = STORIES[s.name];
   var w = el("div", "story");
-  w.appendChild(photo());
-  w.appendChild(el("h2", null, c.t));
-  w.appendChild(el("p", "sig", "Marcus, 60-something"));
+  w.appendChild(el("div", "head", '<img src="marcus.jpg" alt="Marcus Booker" width="72" height="72"><div><h2>' + c.t + '</h2><p class="sig">Marcus, 60-something</p></div>'));
   c.p.forEach(function(t){ w.appendChild(el("p", null, t)); });
   var n = el("button", "btn btn-warm", "Keep going"); n.type = "button";
   n.onclick = function(){ advance(); };
@@ -529,7 +674,6 @@ function renderTip(s, box){
     card.appendChild(ol);
   }
   c.p.forEach(function(t){ card.appendChild(el("p", null, t)); });
-  card.appendChild(el("p", "free", "You don't need to buy anything for this one."));
   box.appendChild(card);
   var n = el("button", "btn btn-warm", "Got it, next"); n.type = "button";
   n.onclick = function(){ advance(); };
@@ -537,7 +681,42 @@ function renderTip(s, box){
   track("tip_view", {name: s.name});
 }
 
+// UI sounds. Synthesized (no file to load), quiet, soft sine blips.
+var AC = null;
+function tone(f0, f1, delay, dur, vol){
+  var t = AC.currentTime + delay, o = AC.createOscillator(), g = AC.createGain();
+  o.type = "sine";
+  o.frequency.setValueAtTime(f0, t);
+  o.frequency.exponentialRampToValueAtTime(f1, t + dur * 0.7);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(vol || 0.18, t + 0.005);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g); g.connect(AC.destination);
+  o.start(t); o.stop(t + dur + 0.01);
+}
+function sound(fn){
+  try{
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state === "suspended") AC.resume();
+    fn();
+  }catch(e){}
+}
+// Answer: one "pop", pitch falling.
+function pop(){ sound(function(){ tone(880, 440, 0, 0.12); }); }
+// Orange button: two short notes going up, a small "next".
+function chime(){ sound(function(){ tone(587, 587, 0, 0.09); tone(880, 880, 0.07, 0.14); }); }
+// Analysis screen (2.6 s): quiet ticks climbing one octave with the %, then a 3-note "done".
+function scan(){ sound(function(){
+  for (var k = 0; k < 13; k++){ var f = 440 * Math.pow(2, k / 12); tone(f, f, 0.25 + k * 0.17, 0.06, 0.07); }   // starts after the button chime
+  tone(659, 659, 2.45, 0.1); tone(880, 880, 2.53, 0.1); tone(1319, 1319, 2.61, 0.28);
+}); }
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest(".btn-warm");
+  if (b && !fromSticky) chime();   // the sticky copy re-clicks the real button: play once
+}, true);
+
 function pick(q, o, btn){
+  pop();
   if (q.multi){
     var arr = state.answers[q.id] || [];
     if (o === q.excl) arr = arr.indexOf(o) > -1 ? [] : [o];
@@ -546,7 +725,7 @@ function pick(q, o, btn){
     state.answers[q.id] = arr; save();
     var all = document.querySelectorAll("#q-body .opt");
     for (var i=0;i<all.length;i++) all[i].classList.toggle("sel", arr.indexOf(all[i].textContent) > -1);
-    document.getElementById("q-next").disabled = !arr.length;
+    document.getElementById("q-next").disabled = document.querySelector("#sticky button").disabled = !arr.length;
     return;
   }
   state.answers[q.id] = o; save();
@@ -562,12 +741,6 @@ function nextMulti(q){
   advance();
 }
 
-function startQuiz(){
-  state = {i:nextIdx(0), answers:{}, done:false}; save();
-  track("quiz_start");
-  render();
-}
-
 function advance(){
   state.i = nextIdx(state.i); save();
   if (FLOW[state.i].type === "wait"){ state.done = true; save(); track("quiz_complete"); }
@@ -579,8 +752,42 @@ function goBack(){
   render();
 }
 
+// A short, quiet confetti burst when the result appears. Canvas, no library, ~2 s, site colors.
+function confetti(){
+  try{
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var cv = document.createElement("canvas"), cx = cv.getContext("2d"), dpr = window.devicePixelRatio || 1;
+    var W = window.innerWidth, H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20";
+    document.body.appendChild(cv); cx.scale(dpr, dpr);
+    var COLORS = ["#e8913a", "#2e9e6b", "#f3c98b", "#13213d", "#9ad4b5"], P = [];
+    for (var i = 0; i < 70; i++){
+      var left = i % 2 === 0;   // two bursts, from the top corners toward the middle
+      P.push({x: left ? W * 0.15 : W * 0.85, y: H * 0.15,
+              vx: (left ? 1 : -1) * (1.5 + Math.random() * 4), vy: -3 - Math.random() * 5,
+              w: 5 + Math.random() * 4, h: 8 + Math.random() * 6, r: Math.random() * 6, vr: (Math.random() - .5) * .3,
+              c: COLORS[i % COLORS.length]});
+    }
+    var t0 = performance.now(), DUR = 2200;
+    (function frame(now){
+      var k = (now - t0) / DUR;
+      cx.clearRect(0, 0, W, H);
+      cx.globalAlpha = k < .7 ? 1 : Math.max(0, 1 - (k - .7) / .3);
+      P.forEach(function(p){
+        p.vy += 0.18; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillStyle = p.c;
+        cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r * 2)));
+        cx.restore();
+      });
+      if (k < 1) requestAnimationFrame(frame); else cv.remove();
+    })(t0);
+  }catch(e){}
+}
+
 function analyze(){
   show("s-wait");
+  scan();
   var li = document.querySelectorAll("#s-wait .checks li");
   for (var i=0;i<li.length;i++) li[i].classList.remove("on");
   var bar = document.getElementById("w-bar"); bar.style.transition = "none"; bar.style.width = "0";
@@ -595,7 +802,7 @@ function analyze(){
   setTimeout(function(){ li[0].classList.add("on"); }, 500);
   setTimeout(function(){ li[1].classList.add("on"); }, 1300);
   setTimeout(function(){ li[2].classList.add("on"); }, 2000);
-  setTimeout(function(){ clearInterval(timer); pct.textContent = "99"; state.i = nextIdx(state.i); save(); render(); }, 2600);
+  setTimeout(function(){ clearInterval(timer); pct.textContent = "99"; state.i = nextIdx(state.i); save(); render(); confetti(); }, 2600);
 }
 
 // ===== RESULT =====
@@ -616,61 +823,52 @@ function renderResult(){
   var when = w === "I don't fall asleep at all" ? "you told me you can't even get to sleep in the first place" :
              "you wake up " + (w === "Before 1AM" ? "before 1AM" : w === "1–2AM" ? "between 1 and 2" : "between 2 and 4");
   var hap = a.happens === "Hot, sweating" ? "Hot, sweating, kicking the covers off." :
-            a.happens === "Brain won't settle" ? "And the brain won't settle. Wide awake at the one hour nobody should be thinking." :
-            a.happens === "Heart racing" ? "Heart going like you ran up the stairs. Something hit the alarm." :
-            "You just lie there. Eyes open, staring at the ceiling.";
-  var dur = a.howlong === "A few weeks" ? "It's only been a few weeks. That's the best time to catch it." :
-            a.howlong === "A few months" ? "A few months of that is enough to wear anyone down." :
-            a.howlong === "1–2 years" ? "One or two years of that. That's a long time to be tired." :
-            "And it's been going on longer than you want to admit. I know that feeling.";
-  var intro = prof === "The Hot Wake-Up" ? "The hot wake-up is the fuel dip with the heat turned up. The room, the drink and the dinner do the turning." :
-              prof === "The Racing Mind" ? "Your body sends the wake-up signal, and your mind grabs it and runs." :
-              "The classic 3AM Dip. It's the most common one I hear about.";
+            a.happens === "Brain won't settle" ? "And the brain won't settle." :
+            a.happens === "Heart racing" ? "Heart going like you ran the stairs." :
+            "Eyes open, staring at the ceiling.";
+  var dur = a.howlong === "A few weeks" ? "Only a few weeks. Best time to catch it." :
+            a.howlong === "A few months" ? "Months of that wears anyone down." :
+            a.howlong === "1–2 years" ? "One or two years. That's a long time tired." :
+            "Longer than you want to admit. I know that feeling.";
+  var intro = prof === "The Hot Wake-Up" ? "The fuel dip, with the heat turned up." :
+              prof === "The Racing Mind" ? "Your body sends the signal. Your mind grabs it and runs." :
+              "The classic 3AM Dip. The one I hear most.";
 
   // 2. Your evening
-  var din = a.dinner === "Before 6PM" ? "You eat dinner before 6. Same mistake I made for years. That's a long stretch on an empty tank before 3AM." :
-            a.dinner === "6–7PM" ? "You eat dinner around 6 or 7. Not bad, but it's what's on the plate that carries you to morning." :
-            a.dinner === "7–8PM" ? "You eat dinner between 7 and 8. Fine, as long as the plate is doing its job." :
-            a.dinner === "After 8PM" ? "You eat dinner after 8. Your body is still working on it when it should be resting." :
-            "Your dinner time moves around. Your body never knows when the fuel is coming.";
+  var din = a.dinner === "Before 6PM" ? "Dinner before 6. My old mistake. A long night on an empty tank." :
+            a.dinner === "6–7PM" ? "Dinner around 6 or 7. Fine, but the plate has to carry you to morning." :
+            a.dinner === "7–8PM" ? "Dinner between 7 and 8. Good, if the plate does its job." :
+            a.dinner === "After 8PM" ? "Dinner after 8. Your body is still digesting when it should rest." :
+            "Dinner moves around. Your body never knows when fuel is coming.";
   var pos = a.dinner === "Before 6PM" ? 12 : a.dinner === "6–7PM" ? 33 : a.dinner === "7–8PM" ? 50 : a.dinner === "After 8PM" ? 86 : 50;
   var dr = [];
-  if (drink.indexOf("Wine or a drink") > -1) dr.push("The wine in the evening feels like it helps. It's one of the things that empties the tank at 3.");
+  if (drink.indexOf("Wine or a drink") > -1) dr.push("The evening wine feels like it helps. It empties the tank at 3.");
   if (drink.indexOf("Coffee after 3PM") > -1) dr.push("Coffee after 3 is still in you at midnight.");
-  if (drink.indexOf("Tea") > -1) dr.push("Tea is a good instinct. The kind, and the hour, are what I'd change. You have my grandmother's recipe now.");
-  if (drink.indexOf("Water") > -1 && dr.length === 0) dr.push("Water in the evening is fine. It just doesn't do anything for 3AM.");
-  if (drink.indexOf("Nothing much") > -1 || (!dr.length && !drink.length)) dr.push("You don't drink much in the evening. Good. That leaves room for the hot drink I gave you.");
-  var last = a.last === "Phone or TV" ? "The phone or the TV is the last thing you see. That light tells your body it's noon." :
-             a.last === "Lie there and think" ? "You lie there and think before lights out. The day follows you into bed. That's what the notebook is for." :
-             a.last === "Pray or breathe" ? "You pray or breathe before lights out. Keep that. It's the right instinct." :
-             "You read before lights out. Good. Keep that.";
+  if (drink.indexOf("Tea") > -1) dr.push("Tea is a good instinct. Now you have the right recipe.");
+  if (drink.indexOf("Water") > -1 && dr.length === 0) dr.push("Water is fine. It just doesn't help at 3.");
+  if (drink.indexOf("Nothing much") > -1 || (!dr.length && !drink.length)) dr.push("Not much to drink at night. Good. Room for the hot drink.");
+  var last = a.last === "Phone or TV" ? "Phone or TV last thing. That light tells your body it's noon." :
+             a.last === "Lie there and think" ? "You lie there thinking. That's what the notebook is for." :
+             a.last === "Pray or breathe" ? "You pray or breathe. Keep that." :
+             "You read before lights out. Keep that.";
 
   // 3. What you tried
   var tr;
   if (!tried.length || tried.indexOf("Nothing yet") > -1){
-    tr = "You haven't tried much yet. Honestly, that's good news. No money spent fighting the wrong hour.";
+    tr = "Nothing tried yet. Good news: no money spent on the wrong hour.";
   } else {
     var bits = [];
-    if (tried.indexOf("Melatonin") > -1) bits.push("You tried melatonin. So did I.");
-    if (tried.indexOf("Teas") > -1) bits.push("The teas are nice. A cup at bedtime doesn't change what your body does at 3.");
-    if (tried.indexOf("Gummies or CBD") > -1) bits.push("Gummies take the edge off the evening. They don't touch the middle of the night.");
-    if (tried.indexOf("Sleeping pills") > -1) bits.push("The pills " + (a.pill_often === "Every night" ? "every night " : "") + "knock you out. They don't fix why you wake up." + (a.pill_stop === "Yes" ? " You told me you'd like to stop. That's a decision for you and your doctor, and the evening makes it easier." : ""));
-    tr = bits.join(" ") + " None of that is your fault. They all work on falling asleep. Your problem is staying asleep.";
+    if (tried.indexOf("Melatonin") > -1) bits.push("Melatonin? Me too.");
+    if (tried.indexOf("Teas") > -1) bits.push("Teas are nice. They don't touch 3AM.");
+    if (tried.indexOf("Gummies or CBD") > -1) bits.push("Gummies calm the evening, not the night.");
+    if (tried.indexOf("Sleeping pills") > -1) bits.push("The pills " + (a.pill_often === "Every night" ? "every night " : "") + "knock you out. They don't fix the waking." + (a.pill_stop === "Yes" ? " You'd like to stop: talk to your doctor. The evening makes it easier." : ""));
+    tr = bits.join(" ") + " Not your fault. They help you fall asleep. Your problem is staying asleep.";
   }
 
-  // 4. Why you want it + willingness
-  var why = a.reason === "Be a normal human during the day" ? "You said you want to be a normal human during the day. Tired of being tired. That was me too." :
-            a.reason === "Stop worrying about my memory" ? "You said the memory thing worries you. That fog is your body asking for the sleep it didn't get." :
-            a.reason === "My health long term" ? "You said it's about your health long term. That's the right reason, and it's the right place to fix it: the evening, not the bedtime." :
-            a.reason === "Stop being cranky with the people I love" ? "You said you're tired of being cranky with the people you love. They'll get the rested you back." :
-            a.reason === "Stop getting up to pee and never falling back asleep" ? "You said it's the getting up, and never falling back asleep. Getting up is normal after 50. Falling back asleep is the part we fix: less liquid after 8, and the 3AM card." :
-            "You said you want off the pills. Nothing here is something to swallow. It's what you do between dinner and bed.";
-  var will = a.willing === "Yes, let's do it" ? "And you're willing to try 5 small evening changes for 14 nights. That's all I ask." :
-             a.willing === "Maybe" ? "You said maybe on the 14 nights. Fair. Read what I'd do first, then decide." :
-             "You said you've tried everything. Not this. Nobody told you to look at the evening.";
-
-  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
   var h = "";
+  // Warning line above the cards (no disease, no numbers: see docs/OFFRE.md)
+  h += '<div class="alert"><svg viewBox="0 0 24 24"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>' +
+       '<span>Don\'t let 3AM become your normal. Every broken night steals from the next day.</span></div>';
   // Card 1
   h += '<div class="card ok" data-card="1"><div class="head"><span class="ic">✓</span><h2>Your profile: ' + esc(prof) + '</h2></div>' +
        '<p>' + esc(intro) + ' So ' + esc(when) + '. ' + esc(hap) + '</p><p>' + esc(dur) + '</p></div>';
@@ -685,14 +883,47 @@ function renderResult(){
   h += '<div class="card" data-card="3"><h2>What you already have</h2>' +
        '<p class="small">' + esc(tr) + '</p>' +
        '<ul class="have"><li>' + esc(TIPS.drink.line) + '</li><li>' + esc(TIPS.notebook.line) + '</li><li>' + esc(TIPS.awake.line) + '</li></ul></div>';
-  // Card 4
-  h += '<div class="card" data-card="4"><h2>Your 14 nights, if you want them</h2>' +
+  document.getElementById("r-body").innerHTML = h;
+  show("s-result");
+  track("result_view", {profile: prof});
+  for (var c=1;c<=3;c++) track("result_card_view", {card: c});
+}
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+// Real customer reviews only (with their OK). Example: {name:"Sarah", stars:5, text:"..."}
+var REVIEWS = [];
+function renderReviews(){
+  var box = document.getElementById("reviews");
+  box.hidden = !REVIEWS.length;
+  box.innerHTML = REVIEWS.map(function(r){
+    var n = Math.max(1, Math.min(5, r.stars || 5));
+    return '<div class="rv"><div class="st">' + "★".repeat(n) + '<i>' + "★".repeat(5 - n) + '</i></div>' +
+           '<p>' + esc(r.text) + '</p><b>— ' + esc(r.name) + '</b></div>';
+  }).join("");
+}
+
+// Top of the offer page: the visitor's answers + the 14-night plan (was card 4 of the result).
+function fillMore(){
+  renderReviews();
+  var a = state.answers || {}, tried = a.tried || [];
+  var why = a.reason === "Be a normal human during the day" ? "You want to feel normal in the day. That was me too." :
+            a.reason === "Stop worrying about my memory" ? "The memory worries you. That fog is your body asking for lost sleep." :
+            a.reason === "My health long term" ? "Your long-term health. Right reason. Right place: the evening." :
+            a.reason === "Stop being cranky with the people I love" ? "Cranky with your people? They'll get the rested you back." :
+            a.reason === "Stop getting up to pee and never falling back asleep" ? "Getting up after 50 is normal. Falling back asleep is what we fix: less liquid after 8, and the 3AM card." :
+            "You want off the pills. Nothing here is a pill. It's your evening.";
+  var will = a.willing === "Yes, let's do it" ? "And you'll try 14 nights. That's all I ask." :
+             a.willing === "Maybe" ? "Maybe on the 14 nights. Fair. Read what I'd do first." :
+             "You've tried everything. Not this. Nobody told you to look at the evening.";
+  document.getElementById("more-plan").innerHTML =
+       '<div class="card"><h2>Your 14 nights, if you want them</h2>' +
        '<ul class="data">' +
-              '<li><span>Wake-up time</span><span>' + esc(a.wake || "—") + '</span></li>' +
+       '<li><span>Wake-up time</span><span>' + esc(a.wake || "—") + '</span></li>' +
        '<li><span>What happens</span><span>' + esc(a.happens || "—") + '</span></li>' +
        '<li><span>Tried</span><span>' + esc(tried.length ? tried.join(", ") : "Nothing yet") + '</span></li>' +
        '<li><span>Dinner</span><span>' + esc(a.dinner || "—") + '</span></li>' +
-              '</ul>' +
+       '</ul>' +
        '<p>' + esc(why) + ' ' + esc(will) + '</p>' +
        '<ul class="plan">' +
        '<li><b>Nights 1–3</b><span>Watch and fuel. Dinner later or bigger, one thing from the kitchen after.</span></li>' +
@@ -700,25 +931,7 @@ function renderResult(){
        '<li><b>Nights 8–11</b><span>The brain dump and the 3AM card.</span></li>' +
        '<li><b>Nights 12–14</b><span>All five moves, your way.</span></li>' +
        '</ul></div>';
-  document.getElementById("r-body").innerHTML = h;
-  show("s-result");
-  track("result_view", {profile: prof});
-  for (var c=1;c<=4;c++) track("result_card_view", {card: c});
 }
-
-function fillMore(){
-  try{ var w=(state.answers||{}).willing; var el=document.getElementById("more-time");
-    if(el) el.textContent = w === "Maybe" ? "You said maybe." : w === "I've tried everything" ? "You said you've tried everything. Not this." : "You said yes, let's do it."; }catch(e){}
-}
-function ctaClick(){
-  track("cta_click", {profile: profileOf(state.answers || {}), price: 17});
-  track("checkout_view", {price: 17});
-  chrome(false, false);
-  show("s-pay");
-  window.scrollTo(0,0);
-  return false;
-}
-
 function declineClick(){
   track("decline_click", {profile: profileOf(state.answers || {})});
   chrome(false, false);
@@ -732,7 +945,7 @@ function restart(){
 
 // ===== BOOT =====
 (function(){
-  track("page_view", {v:"v8"});
+  track("page_view", {v:"v9"});
   if (state.done && state.i < RESULT_IDX){ state.i = RESULT_IDX; }   // survives a refresh
   if (FLOW[state.i].type === "wait") state.i = nextIdx(state.i);
   render();
