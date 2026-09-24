@@ -702,14 +702,11 @@ function sound(fn){
   }catch(e){}
 }
 // Answer: one "pop", pitch falling.
-function pop(){ sound(function(){ tone(880, 440, 0, 0.12); }); }
+function pop(){}
 // Orange button: two short notes going up, a small "next".
-function chime(){ sound(function(){ tone(587, 587, 0, 0.09); tone(880, 880, 0.07, 0.14); }); }
+function chime(){}
 // Analysis screen (2.6 s): quiet ticks climbing one octave with the %, then a 3-note "done".
-function scan(){ sound(function(){
-  for (var k = 0; k < 13; k++){ var f = 440 * Math.pow(2, k / 12); tone(f, f, 0.25 + k * 0.17, 0.06, 0.07); }   // starts after the button chime
-  tone(659, 659, 2.45, 0.1); tone(880, 880, 2.53, 0.1); tone(1319, 1319, 2.61, 0.28);
-}); }
+function scan(){}
 document.addEventListener("click", function(e){
   var b = e.target.closest && e.target.closest(".btn-warm");
   if (b && !fromSticky) chime();   // the sticky copy re-clicks the real button: play once
